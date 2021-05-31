@@ -16,6 +16,28 @@ const getState = ({ getStore, getActions, setStore }) => {
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
+
+			//login
+			login: async (mail, pass) => {
+				var myHeaders = new Headers();
+				myHeaders.append("Content-Type", "application/json");
+
+				var raw = JSON.stringify({
+					email: mail,
+					password: pass
+				});
+
+				var requestOptions = {
+					method: "POST",
+					headers: myHeaders,
+					body: raw,
+					redirect: "follow"
+				};
+				const resLogin = await fetch(process.env.BACKEND_URL + "/login", requestOptions);
+				const data = await resLogin.json();
+				console.log("Data login", data);
+				sessionStorage.setItem("token", data.token);
+			},
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},
