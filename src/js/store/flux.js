@@ -1,64 +1,61 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
+			loginData: {},
+			loginInfo: {},
+			signUpData: {},
+			loggedIn: false
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
 
 			//login
-			login: async (mail, pass) => {
-				var myHeaders = new Headers();
-				myHeaders.append("Content-Type", "application/json");
-
-				var raw = JSON.stringify({
-					email: mail,
-					password: pass
-				});
-
-				var requestOptions = {
+			login: () => {
+				const sendData = getStore().loginData;
+				console.log(sendData);
+				fetch(process.env.BACKEND_URL + "/login", {
 					method: "POST",
-					headers: myHeaders,
-					body: raw,
-					redirect: "follow"
-				};
-				const resLogin = await fetch(process.env.BACKEND_URL + "/login", requestOptions);
-				const data = await resLogin.json();
-				console.log("Data login", data);
-				sessionStorage.setItem("token", data.token);
+					headers: {
+						"Content-Type": "application/json"
+					},
+					body: JSON.stringify(sendData)
+				})
+					.then(resp => resp.json())
+					.then(resp => {
+						localStorage.setItem("token", resp.token);
+						if (resp.token !== undefined) {
+							setStore({ loggedIn: true });
+							setStore({ loginInfo: resp.user });
+						}
+					})
+					.catch(error => console.log(error));
 			},
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
+			loginData: e => {
+				let data = { [e.target.name]: e.target.value };
+				setStore({ loginData: { ...getStore().loginData, ...data } });
 			},
-			loadSomeData: () => {
-				/**
-					fetch().then().then(data => setStore({ "foo": data.bar }))
-				*/
-			},
-			changeColor: (index, color) => {
-				//get the store
-				const store = getStore();
 
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
-				});
-
-				//reset the global store
-				setStore({ demo: demo });
+			//registro
+			signUp: () => {
+				let userInfo = { email: getStore().signUpData.email, password: getStore().signUpData.password };
+				setStore({ loginData: userInfo });
+				const sendData = getStore().signUpData;
+				fetch(process.env.BACKEND_URL + "/user", {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json"
+					},
+					body: JSON.stringify(sendData)
+				})
+					.then(resp => resp.json())
+					.then(resp => {
+						console.log(resp), getActions().login();
+					})
+					.catch(error => console.log(error));
+			},
+			signUpData: e => {
+				let data = { [e.target.name]: e.target.value };
+				setStore({ signUpData: { ...getStore().signUpData, ...data } });
 			}
 		}
 	};
