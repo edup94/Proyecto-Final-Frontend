@@ -35,7 +35,7 @@ export const Login = () => {
 				<div className="d-flex justify-content-center">
 					<button
 						type="submit"
-						className="btn btn-outline-light bg-dark text-white"
+						className="btn btn-outline-light bg-white text-dark"
 						// onClick={() => {actions.login()}}
 					>
 						Login {store.loggedIn == true ? <Redirect to="/" /> : ""}
