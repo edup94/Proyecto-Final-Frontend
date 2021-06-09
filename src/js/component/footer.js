@@ -18,7 +18,7 @@ export const Footer = () => {
 				</div>
 				<div className="col col-md-auto">
 					<a href="" className="generic-anchor footer-list-anchor">
-						<img src="..." className="card-img-top" alt="..." />
+						<i className="fas fa-biking fa-3x fa-lg" />
 					</a>
 				</div>
 				<div className="col d-flex justify-content-center">
@@ -32,8 +32,6 @@ export const Footer = () => {
 					</Link>
 				</div>
 			</div>
-
-			{/* Iconos redes */}
 			<div className="social-media-icons text-center">
 				<div className="row d-flex justify-content-center flex-wrap">
 					<div className="col col-sm-auto">

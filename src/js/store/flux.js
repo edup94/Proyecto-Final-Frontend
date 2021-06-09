@@ -7,8 +7,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 			loggedIn: false
 		},
 		actions: {
-			// Use getActions to call a function within a fuction
-
 			//login
 			login: () => {
 				const sendData = getStore().loginData;
@@ -22,7 +20,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 					.then(resp => resp.json())
 					.then(resp => {
-						localStorage.setItem("token", resp.token);
+						sessionStorage.setItem("token", resp.token);
 						if (resp.token !== undefined) {
 							setStore({ loggedIn: true });
 							setStore({ loginInfo: resp.user });
@@ -37,19 +35,25 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			//registro
 			signUp: () => {
-				let userInfo = { email: getStore().signUpData.email, password: getStore().signUpData.password };
-				setStore({ loginData: userInfo });
-				const sendData = getStore().signUpData;
+				let userInfo = {
+					username: getStore().signUpData.username,
+					nombre: getStore().signUpData.nombre,
+					apellido: getStore().signUpData.apellido,
+					email: getStore().signUpData.email,
+					perfil: getStore().signUpData.perfil,
+					contrasena: getStore().signUpData.contrasena
+				};
+				console.log(userInfo);
 				fetch(process.env.BACKEND_URL + "/user", {
 					method: "POST",
 					headers: {
 						"Content-Type": "application/json"
 					},
-					body: JSON.stringify(sendData)
+					body: JSON.stringify(userInfo)
 				})
 					.then(resp => resp.json())
 					.then(resp => {
-						console.log(resp), getActions().login();
+						console.log(resp);
 					})
 					.catch(error => console.log(error));
 			},

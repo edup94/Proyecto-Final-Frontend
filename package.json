@@ -80,6 +80,7 @@
 		"@fortawesome/fontawesome-svg-core": "^1.2.35",
 		"@fortawesome/free-solid-svg-icons": "^5.15.3",
 		"@fortawesome/react-fontawesome": "^0.1.14",
+		"@types/bcrypt": "^5.0.0",
 		"bootstrap": "^4.6.0",
 		"jquery": "^3.6.0",
 		"popper.js": "^1.16.1",

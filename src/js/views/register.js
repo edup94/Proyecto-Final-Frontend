@@ -1,22 +1,21 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import { Context } from "../store/appContext";
-import { Link } from "react-router-dom";
 
 export const Register = () => {
 	const { store, actions } = useContext(Context);
 
-	const handlerClick = e => {
-		e.PreventDefault();
-	};
-
 	return (
-		<div className="title container">
-			<h4 className="text-white text-justify">Regístrate para iniciar sesión</h4>
-			<div className="container register d-flex justify-content-center">
-				<form onSubmit={handlerClick} className="col-4">
+		<div className="container my-3">
+			<div className="row d-flex justify-content-center">
+				<div>
+					<h2 className="text-primary mb-3">Registrarse</h2>
+				</div>
+			</div>
+			<div className="row d-flex justify-content-center">
+				<form className="col-4">
 					<div className="form-group">
 						<input
-							onChange={actions.registerData}
+							onChange={actions.signUpData}
 							name="username"
 							type="text"
 							placeholder="Nombre de Usuario"
@@ -26,8 +25,8 @@ export const Register = () => {
 					</div>
 					<div className="form-group">
 						<input
-							onChange={actions.registerData}
-							name="First Name"
+							onChange={actions.signUpData}
+							name="nombre"
 							type="text"
 							placeholder="Nombre"
 							className="form-control"
@@ -36,25 +35,25 @@ export const Register = () => {
 					</div>
 					<div className="form-group">
 						<input
-							onChange={actions.registerData}
-							name="Last Name"
+							onChange={actions.signUpData}
+							name="apellido"
 							type="text"
 							placeholder="Apellido"
 							className="form-control"
 							aria-label="Last Name"
 						/>
 					</div>
-
 					<div className="form-group">
 						<div className="input-group-prepend">
-							<label
-								className="input-group-text"
-								onChange={actions.registerData}
-								htmlFor="inputGroupSelect01">
+							<label className="input-group-text" htmlFor="inputGroupSelect01">
 								Perfil
 							</label>
 						</div>
-						<select className="custom-select" id="inputGroupSelect01">
+						<select
+							onChange={actions.signUpData}
+							name="perfil"
+							className="custom-select"
+							id="inputGroupSelect01">
 							<option value="">Escoger...</option>
 							<option value="1">Ciclista</option>
 							<option value="2">Propietario</option>
@@ -64,7 +63,7 @@ export const Register = () => {
 
 					<div className="form-group">
 						<input
-							onChange={actions.registerData}
+							onChange={actions.signUpData}
 							name="email"
 							type="email"
 							placeholder="Email"
@@ -75,7 +74,7 @@ export const Register = () => {
 
 					<div className="form-group">
 						<input
-							onChange={actions.registerData}
+							onChange={actions.signUpData}
 							name="contrasena"
 							type="password"
 							placeholder="Contraseña"
@@ -83,9 +82,14 @@ export const Register = () => {
 						/>
 					</div>
 					<div className="d-flex justify-content-center">
-						<Link to="/login" className="btn btn-dark btn-outline-light">
-							<h5 className="card-text">Registrarse</h5>
-						</Link>
+						<button
+							onClick={e => {
+								e.preventDefault();
+								actions.signUp();
+							}}
+							className="btn btn-primary">
+							Aceptar
+						</button>
 					</div>
 				</form>
 			</div>
