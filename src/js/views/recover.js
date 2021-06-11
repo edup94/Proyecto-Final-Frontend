@@ -20,7 +20,7 @@ export const Recover = () => {
 						<h5>Te enviaremos un email para que vuelvas a tener acceso a tu cuenta</h5>
 					</div>
 				</div>
-				<div className="container login d-flex justify-content-center">
+				<div className="container d-flex justify-content-center">
 					<form onSubmit={handlerClick} className="col-6">
 						<div className="form-group row">
 							<input

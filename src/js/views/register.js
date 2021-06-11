@@ -5,10 +5,6 @@ import { Link } from "react-router-dom";
 export const Register = () => {
 	const { store, actions } = useContext(Context);
 
-	const handlerClick = e => {
-		e.PreventDefault();
-	};
-
 	return (
 		<div className="container login registro d-flex justify-content-end">
 			<div className="fondo bg-white col-5 shadow p-4 mb-4 m-5">
@@ -18,10 +14,10 @@ export const Register = () => {
 					Regístrate para iniciar sesión
 				</h4>
 				<div className="container register d-flex justify-content-center">
-					<form onSubmit={handlerClick} className="col-12">
+					<form className="col-12">
 						<div className="form-group">
 							<input
-								onChange={actions.registerData}
+								onChange={actions.signUpData}
 								name="username"
 								type="text"
 								placeholder="Nombre de Usuario"
@@ -31,7 +27,7 @@ export const Register = () => {
 						</div>
 						<div className="form-group">
 							<input
-								onChange={actions.registerData}
+								onChange={actions.signUpData}
 								name="First Name"
 								type="text"
 								placeholder="Nombre"
@@ -41,7 +37,7 @@ export const Register = () => {
 						</div>
 						<div className="form-group">
 							<input
-								onChange={actions.registerData}
+								onChange={actions.signUpData}
 								name="Last Name"
 								type="text"
 								placeholder="Apellido"
@@ -54,12 +50,16 @@ export const Register = () => {
 							<div className="input-group-prepend">
 								<label
 									className="input-group-text"
-									onChange={actions.registerData}
+									onChange={actions.signUpData}
 									htmlFor="inputGroupSelect01">
 									Perfil
 								</label>
 							</div>
-							<select className="custom-select" id="inputGroupSelect01">
+							<select
+								onChange={actions.signUpData}
+								name="perfil"
+								className="custom-select"
+								id="inputGroupSelect01">
 								<option value="">Escoger...</option>
 								<option value="1">Ciclista</option>
 								<option value="2">Propietario</option>
@@ -69,7 +69,7 @@ export const Register = () => {
 
 						<div className="form-group">
 							<input
-								onChange={actions.registerData}
+								onChange={actions.signUpData}
 								name="email"
 								type="email"
 								placeholder="Email"
@@ -80,7 +80,7 @@ export const Register = () => {
 
 						<div className="form-group">
 							<input
-								onChange={actions.registerData}
+								onChange={actions.signUpData}
 								name="contrasena"
 								type="password"
 								placeholder="Contraseña"
