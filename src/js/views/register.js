@@ -10,49 +10,6 @@ export const Register = () => {
 	};
 
 	return (
-<<<<<<< HEAD
-		<div className="title container">
-			<div className="d-flex justify-content-center">
-				<h4 className="text-dark">Regístrate para iniciar sesión</h4>
-			</div>
-			<div className="container register d-flex justify-content-center">
-				<form onSubmit={handlerClick} className="col-4">
-					<div className="form-group">
-						<input
-							onChange={actions.registerData}
-							name="username"
-							type="text"
-							placeholder="Nombre de Usuario"
-							className="form-control"
-							aria-describedby="addon-wrapping"
-						/>
-					</div>
-					<div className="form-group">
-						<input
-							onChange={actions.registerData}
-							name="First Name"
-							type="text"
-							placeholder="Nombre"
-							className="form-control"
-							aria-label="First Name"
-						/>
-					</div>
-					<div className="form-group">
-						<input
-							onChange={actions.registerData}
-							name="Last Name"
-							type="text"
-							placeholder="Apellido"
-							className="form-control"
-							aria-label="Last Name"
-						/>
-					</div>
-
-					<div className="form-group">
-						<div className="input-group-prepend">
-							<label
-								className="input-group-text"
-=======
 		<div className="container login registro d-flex justify-content-end">
 			<div className="fondo bg-white col-5 shadow p-4 mb-4 m-5">
 				<h4
@@ -74,7 +31,6 @@ export const Register = () => {
 						</div>
 						<div className="form-group">
 							<input
->>>>>>> c61eaf306e031f793ead50518a71102211eaefb1
 								onChange={actions.registerData}
 								name="First Name"
 								type="text"
