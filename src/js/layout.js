@@ -6,7 +6,6 @@ import { Home } from "./views/home";
 import { Login } from "./views/login";
 import injectContext from "./store/appContext";
 import { Register } from "./views/register";
-
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { Recover } from "./views/recover";

@@ -11,7 +11,9 @@ export const Register = () => {
 
 	return (
 		<div className="title container">
-			<h4 className="text-white text-justify">Regístrate para iniciar sesión</h4>
+			<div className="d-flex justify-content-center">
+				<h4 className="text-dark">Regístrate para iniciar sesión</h4>
+			</div>
 			<div className="container register d-flex justify-content-center">
 				<form onSubmit={handlerClick} className="col-4">
 					<div className="form-group">
