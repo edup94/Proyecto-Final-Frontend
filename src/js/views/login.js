@@ -11,22 +11,7 @@ export const Login = () => {
 		actions.login();
 	};*/
 
-	const passwordInc = () => {
-		swal.fire({
-			text: "Contraseña incorrecta",
-			icon: "warning",
-			timer: "3000",
-			showConfirmButton: false
-		});
-	};
 
-	const mailInc = () => {
-		swal.fire({
-			text: "Mail incorrecto",
-			icon: "warning",
-			timer: "3000"
-		});
-	};
 	return (
 		<div className="container login d-flex justify-content-center">
 			<form className="col-4">
@@ -56,6 +41,9 @@ export const Login = () => {
 						onClick={e => {
 							e.preventDefault();
 							actions.login();
+							if (store.loggedIn == false) {
+								campoInc();
+							}
 						}}>
 						Login {store.loggedIn == true ? <Redirect to="/" /> : ""}
 					</button>
