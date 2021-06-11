@@ -4,16 +4,16 @@ import { Link } from "react-router-dom";
 
 export const Footer = () => {
 	return (
-		<div className="container-footer">
+		<div className="container-footer m-5 pt-2">
 			<div className="row justify-content-md-center text-center">
 				<div className="col d-flex justify-content-center">
 					<Link to="/login">
-						<h5 className="card-text">CONOCENOS</h5>
+						<h4 className="card-text font-weight-bolder">CONOCENOS</h4>
 					</Link>
 				</div>
 				<div className="col d-flex justify-content-center">
 					<Link to="/login">
-						<h5 className="card-text">ÚNETE A NOSOTROS</h5>
+						<h4 className="card-text font-weight-bolder">UNITE</h4>
 					</Link>
 				</div>
 				<div className="col col-md-auto">
@@ -23,12 +23,12 @@ export const Footer = () => {
 				</div>
 				<div className="col d-flex justify-content-center">
 					<Link to="/login">
-						<h5 className="card-text">LOCALES</h5>
+						<h4 className="card-text font-weight-bolder">LOCALES</h4>
 					</Link>
 				</div>
 				<div className="col d-flex justify-content-center">
 					<Link to="/login">
-						<h5 className="card-text">EVENTOS</h5>
+						<h4 className="card-text font-weight-bolder">EVENTOS</h4>
 					</Link>
 				</div>
 			</div>
@@ -83,7 +83,7 @@ export const Footer = () => {
 								<Link to="/login">
 									<h6 className="card-text">Términos</h6>
 								</Link>
-								<p>|</p>
+								<p> | </p>
 								<Link to="/login">
 									<h6 className="card-text">Privacidad</h6>
 								</Link>
