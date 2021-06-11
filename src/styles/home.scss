@@ -3,14 +3,44 @@
 .container-footer{
     margin-left: 30px;
     margin-right: 30px;
-   }
+}
 
 .term-conditions-container {
     margin-top: 10px;
 }
 
 .social-media-icons {
-  margin-top: 30px;
+    margin-top: 30px;
 }
 
+//Register
+.registro {
+    background: url("../../src/img/Remini.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+//Login
+.login {
+    background: url("../../src/img/Login.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+//Recover
+.recover {
+    background: url("../../src/img/Recover.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.fondo{
+    background-color: white;
+    filter:alpha(opacity=80);
+    opacity:0.8;
+    border-radius: 3%;
+}
 
