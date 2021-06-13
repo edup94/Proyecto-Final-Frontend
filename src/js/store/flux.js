@@ -6,9 +6,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             signUpData: {},
             localData: {},
             localInfo: {},
-            loggedIn: false,
-            registered: false,
-            errorRegistered: false
+            loggedIn: false
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -37,27 +35,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				let data = { [e.target.name]: e.target.value };
 				setStore({ loginData: { ...getStore().loginData, ...data } });
 			},
-
-            //registro usuario
-            // signUp: () => {
-			// 	const sendData = getStore().signUpData;
-			// 	fetch(process.env.BACKEND_URL + "/user", {
-			// 		method: "POST",
-			// 		headers: {
-			// 			"Content-Type": "application/json"
-			// 		},
-			// 		body: JSON.stringify(sendData)
-			// 	})
-			// 		.then(resp => resp.json())
-			// 		.then(resp => {
-            //             console.log(resp);
-			// 			setStore({ registered: true });
-			// 		})
-			// 		.catch(error => {
-			// 			console.log(error);
-			// 			setStore({ errorRegistered: true });
-			// 		});
-            // },
             
             //registro usuario
 			signUp: () => {
@@ -109,13 +86,19 @@ const getState = ({ getStore, getActions, setStore }) => {
             
             //registro local
             createLocal: () => {
-				const sendData = getStore().localData;
+				let localInfo = {
+					nombre: getStore().localData.nombre,
+					direccion: getStore().localData.direccion,
+					telefono: getStore().localData.telefono,
+					horario: getStore().localData.horario,
+					descripcion: getStore().localData.descripcion
+                };
 				fetch(process.env.BACKEND_URL + "/local", {
 					method: "POST",
 					headers: {
 						"Content-Type": "application/json"
 					},
-					body: JSON.stringify(sendData)
+					body: JSON.stringify(localInfo)
 				})
 					.then(resp => resp.json())
 					.then(resp => {
