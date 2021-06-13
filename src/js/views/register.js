@@ -28,7 +28,7 @@ export const Register = () => {
 						<div className="form-group">
 							<input
 								onChange={actions.signUpData}
-								name="First Name"
+								name="nombre"
 								type="text"
 								placeholder="Nombre"
 								className="form-control"
@@ -38,7 +38,7 @@ export const Register = () => {
 						<div className="form-group">
 							<input
 								onChange={actions.signUpData}
-								name="Last Name"
+								name="apellido"
 								type="text"
 								placeholder="Apellido"
 								className="form-control"
@@ -50,7 +50,6 @@ export const Register = () => {
 							<div className="input-group-prepend">
 								<label
 									className="input-group-text"
-									onChange={actions.signUpData}
 									htmlFor="inputGroupSelect01">
 									Perfil
 								</label>
@@ -88,9 +87,14 @@ export const Register = () => {
 							/>
 						</div>
 						<div className="d-flex justify-content-center">
-							<Link to="/login" className="btn btn-primary mb-5">
-								<h5 className="card-text">Registrarse</h5>
-							</Link>
+							<button
+							onClick={e => {
+								e.preventDefault();
+								actions.signUp();
+							}}
+							className="btn btn-primary">
+                            Registrarse
+						</button>
 						</div>
 					</form>
 				</div>

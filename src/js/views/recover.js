@@ -1,13 +1,9 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 
 export const Recover = () => {
 	const { store, actions } = useContext(Context);
-
-	const handlerClick = e => {
-		e.PreventDefault();
-	};
 
 	return (
 		<div className="container login recover d-flex justify-content-end">
@@ -21,10 +17,10 @@ export const Recover = () => {
 					</div>
 				</div>
 				<div className="container d-flex justify-content-center">
-					<form onSubmit={handlerClick} className="col-6">
+					<form className="col-6">
 						<div className="form-group row">
 							<input
-								// onChange={actions.loginData}
+								onChange={actions.loginData}
 								name="email"
 								type="email"
 								placeholder="Email"
