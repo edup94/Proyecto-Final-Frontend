@@ -9,6 +9,7 @@ import { Register } from "./views/register";
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { Recover } from "./views/recover";
+import { Map } from "./component/mapaPropietario";
 
 //create your first component
 const Layout = () => {
@@ -24,6 +25,9 @@ const Layout = () => {
 					<Switch>
 						<Route exact path="/">
 							<Landing />
+						</Route>
+						<Route exact path="/map">
+							<Map />
 						</Route>
 						<Route exact path="/home">
 							<Home />
