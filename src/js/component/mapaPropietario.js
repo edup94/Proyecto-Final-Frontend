@@ -5,7 +5,7 @@ import usePlacesAutocomplete, { getGeocode, getLatLng } from "use-places-autocom
 import { Combobox, ComboboxInput, ComboboxPopover, ComboboxList, ComboboxOption } from "@reach/combobox";
 import "@reach/combobox/styles.css";
 import "../../styles/searchStyles.scss";
-// import icono from "../../img/negocioIcon.svg";
+//import icono from "../../img/negocioIcon.svg";
 
 const libraries = ["places"];
 
