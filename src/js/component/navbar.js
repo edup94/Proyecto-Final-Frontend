@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logo from "../../img/logotipo200px.png";
-import "../../styles/navbar.scss";
+import logo from "../../img/logotipoNavBar.png";
 
 export const Navbar = () => {
 	return (
@@ -20,10 +19,14 @@ export const Navbar = () => {
 						</Link>
 					</li>
 					<li className="nav-item">
-						<Link className="btn btn-primary ml-1">Favoritos</Link>
+						<Link to="/" className="btn btn-primary ml-1">
+							Favoritos
+						</Link>
 					</li>
 					<li className="nav-item">
-						<Link className="btn btn-primary ml-1">Bici-friendly</Link>
+						<Link to="/" className="btn btn-primary ml-1">
+							Bici-friendly
+						</Link>
 					</li>
 					<li className="nav-item">
 						<Link to="/map" className="btn btn-primary ml-1">

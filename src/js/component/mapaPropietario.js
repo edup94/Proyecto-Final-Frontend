@@ -11,7 +11,7 @@ const libraries = ["places"];
 
 //estilo inicial del mapa
 const mapContainerStyle = {
-	width: "900px",
+	width: "1200px",
 	height: "600px"
 };
 
@@ -130,8 +130,8 @@ function Search() {
 					clearSuggestions(); //limpio las sugerencias
 					try {
 						const results = await getGeocode({ address }); //obtengo las coordenadas de la dirección
-						console.log(results);
-						const { lat, lng } = await getLatLng(results[0]); //convierto el primer resultado a lat y lng
+						console.log(results[0]);
+						// const { lat, lng } = await getLatLng(results[0]); //convierto el primer resultado a lat y lng
 					} catch (error) {
 						console.log("Error");
 					}

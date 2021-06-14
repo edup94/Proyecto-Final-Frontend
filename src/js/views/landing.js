@@ -11,12 +11,12 @@ import notificaciones from "../../img/notificaciones.png";
 
 export const Landing = () => {
 	return (
-		<body>
+		<div>
 			<Carousel fade>
 				<Carousel.Item>
 					<img className="d-block w-100" src={carrusel1} alt="Salvando al mundo una pedaleada a la vez" />
 					<Carousel.Caption>
-						<h2 className="pb-3 d-none d-sm-none d-md-block" style={{ "text-shadow": "3px 3px #000000" }}>
+						<h2 className="pb-3 d-none d-sm-none d-md-block" style={{ textShadow: "3px 3px #000000" }}>
 							Salvando al mundo una pedaleada a la vez
 						</h2>
 						<span className="btn btn-primary mb-5">Unite</span>
@@ -30,7 +30,7 @@ export const Landing = () => {
 					/>
 
 					<Carousel.Caption>
-						<h2 className="pb-3 d-none d-sm-none d-md-block" style={{ "text-shadow": "3px 3px #000000" }}>
+						<h2 className="pb-3 d-none d-sm-none d-md-block" style={{ textShadow: "3px 3px #000000" }}>
 							Registrate y empezá a descubrir lugares bici-friendly
 						</h2>
 						<span className="btn btn-primary mb-5">Unite</span>
@@ -40,7 +40,7 @@ export const Landing = () => {
 					<img className="d-block w-100" src={carrusel2} alt="Enterate de todos los eventos" />
 
 					<Carousel.Caption>
-						<h2 className="pb-3 d-none d-sm-none d-md-block" style={{ "text-shadow": "3px 3px #000000" }}>
+						<h2 className="pb-3 d-none d-sm-none d-md-block" style={{ textShadow: "3px 3px #000000" }}>
 							Enterate de todos los eventos
 						</h2>
 						<span className="btn btn-primary mb-5">Unite</span>
@@ -117,6 +117,6 @@ export const Landing = () => {
 					</div>
 				</div>
 			</div>
-		</body>
+		</div>
 	);
 };
