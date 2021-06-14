@@ -1,10 +1,10 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
-
+import injectContext from "./store/appContext";
 import { Landing } from "./views/landing";
 import { Login } from "./views/login";
-import injectContext from "./store/appContext";
+import { Home } from "./views/home";
 import { Register } from "./views/register";
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
@@ -24,6 +24,9 @@ const Layout = () => {
 					<Switch>
 						<Route exact path="/">
 							<Landing />
+						</Route>
+						<Route exact path="/home">
+							<Home />
 						</Route>
 						<Route exact path="/login">
 							<Login />

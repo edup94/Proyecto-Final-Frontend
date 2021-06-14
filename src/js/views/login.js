@@ -48,7 +48,7 @@ export const Login = () => {
 								}}
 								className="btn btn-primary mt-2">
 								<h5>Aceptar</h5>
-								{store.loggedIn == true ? <Redirect to="/" /> : ""}
+								{store.loggedIn == true ? <Redirect to="/home" /> : ""}
 							</button>
 						</div>
 					</form>

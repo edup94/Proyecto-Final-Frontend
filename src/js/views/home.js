@@ -6,5 +6,9 @@ import "../../styles/demo.scss";
 export const Home = () => {
 	const { store, actions } = useContext(Context);
 
-	return <div className="container" />;
+	return (
+		<div className="container">
+			<h1>Titulo de Prueba</h1>
+		</div>
+	);
 };

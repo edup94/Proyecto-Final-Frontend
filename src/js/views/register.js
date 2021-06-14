@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import { Context } from "../store/appContext";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 export const Register = () => {
 	const { store, actions } = useContext(Context);
@@ -48,9 +48,7 @@ export const Register = () => {
 
 						<div className="form-group">
 							<div className="input-group-prepend">
-								<label
-									className="input-group-text"
-									htmlFor="inputGroupSelect01">
+								<label className="input-group-text" htmlFor="inputGroupSelect01">
 									Perfil
 								</label>
 							</div>
@@ -88,13 +86,14 @@ export const Register = () => {
 						</div>
 						<div className="d-flex justify-content-center">
 							<button
-							onClick={e => {
-								e.preventDefault();
-								actions.signUp();
-							}}
-							className="btn btn-primary">
-                            Registrarse
-						</button>
+								onClick={e => {
+									e.preventDefault();
+									actions.signUp();
+								}}
+								className="btn btn-primary">
+								Registrarse
+								{store.registered == true ? <Redirect to="/login" /> : ""}
+							</button>
 						</div>
 					</form>
 				</div>

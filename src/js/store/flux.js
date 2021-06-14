@@ -3,10 +3,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			loginData: {},
 			userInfo: {},
-            signUpData: {},
-            localData: {},
-            localInfo: {},
-            loggedIn: false
+			signUpData: {},
+			localData: {},
+			localInfo: {},
+			loggedIn: false,
+			registered: false
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -23,7 +24,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 					.then(resp => resp.json())
 					.then(resp => {
-						sessionStorage.setItem("token", resp.token);
+						localStorage.setItem("token", resp.token);
 						if (resp.token !== undefined) {
 							setStore({ loggedIn: true });
 							setStore({ userInfo: resp.user });
@@ -35,8 +36,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				let data = { [e.target.name]: e.target.value };
 				setStore({ loginData: { ...getStore().loginData, ...data } });
 			},
-            
-            //registro usuario
+
+			//registro usuario
 			signUp: () => {
 				let userInfo = {
 					username: getStore().signUpData.username,
@@ -55,22 +56,25 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 					.then(resp => resp.json())
 					.then(resp => {
-						console.log(resp);
+						setStore({ registered: true });
 					})
-					.catch(error => console.log(error));
+					.catch(error => {
+						console.log(error);
+						setStore({ registered: true });
+					});
 			},
 			signUpData: e => {
 				let data = { [e.target.name]: e.target.value };
 				setStore({ signUpData: { ...getStore().signUpData, ...data } });
-            },
+			},
 
-            //editar usuario
-            editUser: (newDataUser) => {
+			//editar usuario
+			editUser: newDataUser => {
 				fetch(process.env.BACKEND_URL + "/user", {
 					method: "PUT",
 					headers: {
 						"Content-Type": "application/json",
-						Authorization: sessionStorage.getItem("token")
+						Authorization: localStorage.getItem("token")
 					},
 					body: JSON.stringify(newDataUser)
 				})
@@ -82,17 +86,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.catch(error => {
 						console.log(error);
 					});
-            },
-            
-            //registro local
-            createLocal: () => {
+			},
+
+			//registro local
+			createLocal: () => {
 				let localInfo = {
 					nombre: getStore().localData.nombre,
 					direccion: getStore().localData.direccion,
 					telefono: getStore().localData.telefono,
 					horario: getStore().localData.horario,
 					descripcion: getStore().localData.descripcion
-                };
+				};
 				fetch(process.env.BACKEND_URL + "/local", {
 					method: "POST",
 					headers: {
@@ -102,24 +106,23 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 					.then(resp => resp.json())
 					.then(resp => {
-                        console.log(resp);
-                        setStore({ localInfo: resp });
-                        
+						console.log(resp);
+						setStore({ localInfo: resp });
 					})
 					.catch(error => console.log(error));
-            },
-            localData: e => {
+			},
+			localData: e => {
 				let data = { [e.target.name]: e.target.value };
 				setStore({ localData: { ...getStore().localData, ...data } });
-            },
+			},
 
-            //editar local
-            editLocal: (newLocalData) => {
+			//editar local
+			editLocal: newLocalData => {
 				fetch(process.env.BACKEND_URL + "/local", {
 					method: "PUT",
 					headers: {
 						"Content-Type": "application/json",
-						Authorization: sessionStorage.getItem("token")
+						Authorization: localStorage.getItem("token")
 					},
 					body: JSON.stringify(newLocalData)
 				})
@@ -131,7 +134,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.catch(error => {
 						console.log(error);
 					});
-            }
+			}
 		}
 	};
 };
