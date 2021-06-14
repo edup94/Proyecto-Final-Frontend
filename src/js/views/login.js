@@ -11,7 +11,6 @@ export const Login = () => {
 		actions.login();
 	};*/
 
-
 	return (
 		<div className="container login d-flex justify-content-center">
 			<form className="col-4">
@@ -41,9 +40,6 @@ export const Login = () => {
 						onClick={e => {
 							e.preventDefault();
 							actions.login();
-							if (store.loggedIn == false) {
-								campoInc();
-							}
 						}}>
 						Login {store.loggedIn == true ? <Redirect to="/" /> : ""}
 					</button>

@@ -1,3 +1,5 @@
+import Swal from "sweetalert2";
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
@@ -8,7 +10,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
-
+			enviarAlerta: (texto, icono, timer, confButton) => {
+				Swal.fire({
+					text: texto,
+					icon: icono,
+					timer: timer,
+					showConfirmButton: confButton
+				});
+			},
 			//login
 			login: () => {
 				const sendData = getStore().loginData;
