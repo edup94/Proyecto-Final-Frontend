@@ -5,7 +5,7 @@ import usePlacesAutocomplete, { getGeocode, getLatLng } from "use-places-autocom
 import { Combobox, ComboboxInput, ComboboxPopover, ComboboxList, ComboboxOption } from "@reach/combobox";
 import "@reach/combobox/styles.css";
 import "../../styles/searchStyles.scss";
-//import icono from "../../img/negocioIcon.svg";
+// import icono from "../../img/negocioIcon.svg";
 
 const libraries = ["places"];
 
@@ -77,7 +77,7 @@ export const Map = () => {
 							lat: marker.lat,
 							lng: marker.lng
 						}}
-						// icon={{ url: icono }}
+						// icon={icono}
 						onClick={() => {
 							setSelected(marker);
 						}}
@@ -92,8 +92,8 @@ export const Map = () => {
 							setSelected(null);
 						}}>
 						<div>
-							<h2>Nombre del Local</h2>
-							<p>Creado: {formatRelative(selected.time, new Date())}</p>
+							<h2 className="text-primary">Nombre del Local</h2>
+							<p className="text-primary">Creado: {formatRelative(selected.time, new Date())}</p>
 						</div>
 					</InfoWindow>
 				) : null}

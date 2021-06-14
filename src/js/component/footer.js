@@ -1,6 +1,7 @@
 import React from "react";
 import "../../styles/home.scss";
 import { Link } from "react-router-dom";
+import logo from "../../img/logotipo60px.png";
 
 export const Footer = () => {
 	return (
@@ -18,7 +19,7 @@ export const Footer = () => {
 				</div>
 				<div className="col col-md-auto">
 					<a href="" className="generic-anchor footer-list-anchor">
-						<img src="..." className="card-img-top" alt="..." />
+						<img src={logo} className="card-img-top" alt="..." />
 					</a>
 				</div>
 				<div className="col d-flex justify-content-center">
@@ -75,7 +76,7 @@ export const Footer = () => {
 			<div className="term-conditions-container">
 				<div className="text-center font-weight-light">
 					Todos los derechos reservados
-					<i className="fa fa-copyright" role="copyright" />
+					<i className="fa fa-copyright m-1" role="copyright" />
 					<p>enBICIando, Uruguay, 2021</p>
 					<div className="d-flex justify-content-center">
 						<div className="col-2">
