@@ -123,8 +123,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				fetch(process.env.BACKEND_URL + "/local", {
 					method: "POST",
 					headers: {
-                        "Content-Type": "application/json",
-                        Authorization: localStorage.getItem("token")
+						"Content-Type": "application/json",
+						Authorization: localStorage.getItem("token")
 					},
 					body: JSON.stringify(localInfo)
 				})
@@ -158,20 +158,21 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.catch(error => {
 						console.log(error);
 					});
-            },
+			},
 
-            //obtener locales
-            getLocales: () => {
+			//obtener locales
+			getLocales: () => {
+				let localInfo = getStore().localData;
 				fetch(process.env.BACKEND_URL + "/local", {
-                method: "GET",
+					method: "GET",
 					headers: {
 						"Content-Type": "application/json",
 						Authorization: localStorage.getItem("token")
 					},
-					body: JSON.stringify(newLocalData)    
-                })
+					body: JSON.stringify(localInfo)
+				})
 					.then(resp => resp.json())
-					.then(resp => setStore({ localInfo: resp }))
+					.then(resp => setStore({ localData: resp }))
 					.catch(error => console.log("error", error));
 			}
 		}

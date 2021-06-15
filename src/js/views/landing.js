@@ -8,6 +8,7 @@ import arreglo from "../../img/arregloBici.png";
 import caminos from "../../img/caminos.png";
 import bicifriendly from "../../img/bicifriendly.png";
 import notificaciones from "../../img/notificaciones.png";
+import { Link } from "react-router-dom";
 
 export const Landing = () => {
 	return (
@@ -33,7 +34,9 @@ export const Landing = () => {
 						<h2 className="pb-3 d-none d-sm-none d-md-block" style={{ textShadow: "3px 3px #000000" }}>
 							Registrate y empezá a descubrir lugares bici-friendly
 						</h2>
-						<span className="btn btn-primary mb-5">Unite</span>
+						<Link to="/login" className="btn btn-primary mb-5">
+							Unite
+						</Link>
 					</Carousel.Caption>
 				</Carousel.Item>
 				<Carousel.Item>
@@ -43,7 +46,9 @@ export const Landing = () => {
 						<h2 className="pb-3 d-none d-sm-none d-md-block" style={{ textShadow: "3px 3px #000000" }}>
 							Enterate de todos los eventos
 						</h2>
-						<span className="btn btn-primary mb-5">Unite</span>
+						<Link to="/login" className="btn btn-primary mb-5">
+							Unite
+						</Link>
 					</Carousel.Caption>
 				</Carousel.Item>
 			</Carousel>
