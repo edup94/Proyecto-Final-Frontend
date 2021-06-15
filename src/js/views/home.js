@@ -11,11 +11,11 @@ export const Home = () => {
 		<div className="container mt-5">
 			<h2 className="d-flex justify-content-center">Locales</h2>
 			<div className="row justify-content-around">
-				{store.localInfo.map((element, i) => {
+				{store.localData.map((element, i) => {
 					return (
 						<LocalCard
 							key={i}
-							name={element.name}
+							nombre={element.nombre}
 							descripcion={element.descripcion}
 							horario={element.horario}
 							direccion={element.direccion}

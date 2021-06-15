@@ -20,7 +20,9 @@ export const Landing = () => {
 						<h2 className="pb-3 d-none d-sm-none d-md-block" style={{ textShadow: "3px 3px #000000" }}>
 							Salvando al mundo una pedaleada a la vez
 						</h2>
-						<span className="btn btn-primary mb-5">Unite</span>
+						<Link to="/login" className="btn btn-primary mb-5">
+							Unite
+						</Link>
 					</Carousel.Caption>
 				</Carousel.Item>
 				<Carousel.Item>
@@ -41,7 +43,6 @@ export const Landing = () => {
 				</Carousel.Item>
 				<Carousel.Item>
 					<img className="d-block w-100" src={carrusel2} alt="Enterate de todos los eventos" />
-
 					<Carousel.Caption>
 						<h2 className="pb-3 d-none d-sm-none d-md-block" style={{ textShadow: "3px 3px #000000" }}>
 							Enterate de todos los eventos
@@ -52,7 +53,6 @@ export const Landing = () => {
 					</Carousel.Caption>
 				</Carousel.Item>
 			</Carousel>
-
 			<div className="flex pt-5">
 				<div className="text-center">
 					<h2 className="text-center">Conectate y empezá a disfrutar</h2>

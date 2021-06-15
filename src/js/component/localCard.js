@@ -14,14 +14,14 @@ export const LocalCard = props => (
 					<button type="button" style={{ height: "44px" }} className="btn btn-outline-warning">
 						<i className="fas fa-star" />
 					</button>
-					<h2 className="nombre-local p-3">{props.name}</h2>
+					<h2 className="nombre-local p-3">{props.nombre}</h2>
 				</div>
 				<p className="local-bajada">{props.descripcion}</p>
 				<div className="row">
 					<div className="col-md-4">
 						<p3>{props.horario}</p3>
 					</div>
-                    <div className="col-md-4">
+					<div className="col-md-4">
 						<p3>{props.telefono}</p3>
 					</div>
 					<div className="col-md-4">
@@ -60,8 +60,9 @@ export const LocalCard = props => (
 );
 
 LocalCard.propTypes = {
-	name: PropTypes.string,
+	nombre: PropTypes.string,
 	horario: PropTypes.string,
 	direccion: PropTypes.string,
-	descripcion: PropTypes.string
+	descripcion: PropTypes.string,
+	telefono: PropTypes.string
 };

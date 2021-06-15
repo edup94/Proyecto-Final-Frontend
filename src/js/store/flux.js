@@ -6,19 +6,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 			loginData: {},
 			userInfo: {},
 			signUpData: {},
-			localData: {},
+			localData: [],
 			localInfo: {},
 			loggedIn: false,
 			registered: false,
 			failRegistered: false
 		},
 		actions: {
-			// Use getActions to call a function within a fuction
-
-			enviarAlerta: (text, icon, timer, confButton) => {
-				Swal.fire({ text: text, icon: icon, timer: timer, ShowConfirmButton: confButton });
-			},
-
 			//login usuario
 			login: async () => {
 				const sendData = getStore().loginData;
@@ -32,6 +26,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 					let data = await resp.json();
 					localStorage.setItem("token", data.token);
+					console.log(data.token);
 					if (data.token !== undefined) {
 						setStore({ loggedIn: true });
 						setStore({ userInfo: data.user });
@@ -162,17 +157,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			//obtener locales
 			getLocales: () => {
-				let localInfo = getStore().localData;
-				fetch(process.env.BACKEND_URL + "/local", {
+				// console.log(process.env.BACKEND_URL + "/local");
+				var myHeaders = new Headers();
+				myHeaders.append("Content-Type", "application/json");
+				myHeaders.append("Authorization", "Bearer " + localStorage.getItem("token"));
+
+				var requestOptions = {
 					method: "GET",
-					headers: {
-						"Content-Type": "application/json",
-						Authorization: localStorage.getItem("token")
-					},
-					body: JSON.stringify(localInfo)
-				})
-					.then(resp => resp.json())
-					.then(resp => setStore({ localData: resp }))
+					headers: myHeaders,
+					redirect: "follow"
+				};
+
+				fetch(process.env.BACKEND_URL + "/local", requestOptions)
+					.then(response => response.json())
+					.then(response => setStore({ localData: response }))
 					.catch(error => console.log("error", error));
 			}
 		}
