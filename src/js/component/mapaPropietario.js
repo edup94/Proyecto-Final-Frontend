@@ -77,7 +77,7 @@ export const Map = () => {
 							lat: marker.lat,
 							lng: marker.lng
 						}}
-						// icon={icono}
+						// icon={{ icono }}
 						onClick={() => {
 							setSelected(marker);
 						}}

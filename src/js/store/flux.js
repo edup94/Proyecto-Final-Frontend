@@ -111,7 +111,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 			},
 
-			//registro local
+			//registro/crear local
 			createLocal: () => {
 				let localInfo = {
 					nombre: getStore().localData.nombre,
@@ -123,7 +123,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				fetch(process.env.BACKEND_URL + "/local", {
 					method: "POST",
 					headers: {
-						"Content-Type": "application/json"
+                        "Content-Type": "application/json",
+                        Authorization: localStorage.getItem("token")
 					},
 					body: JSON.stringify(localInfo)
 				})
@@ -157,6 +158,21 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.catch(error => {
 						console.log(error);
 					});
+            },
+
+            //obtener locales
+            getLocales: () => {
+				fetch(process.env.BACKEND_URL + "/local", {
+                method: "GET",
+					headers: {
+						"Content-Type": "application/json",
+						Authorization: localStorage.getItem("token")
+					},
+					body: JSON.stringify(newLocalData)    
+                })
+					.then(resp => resp.json())
+					.then(resp => setStore({ localInfo: resp }))
+					.catch(error => console.log("error", error));
 			}
 		}
 	};
