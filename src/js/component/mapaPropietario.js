@@ -5,13 +5,13 @@ import usePlacesAutocomplete, { getGeocode, getLatLng } from "use-places-autocom
 import { Combobox, ComboboxInput, ComboboxPopover, ComboboxList, ComboboxOption } from "@reach/combobox";
 import "@reach/combobox/styles.css";
 import "../../styles/searchStyles.scss";
-//import icono from "../../img/negocioIcon.svg";
+// import icono from "../../img/negocioIcon.svg";
 
 const libraries = ["places"];
 
 //estilo inicial del mapa
 const mapContainerStyle = {
-	width: "900px",
+	width: "1200px",
 	height: "600px"
 };
 
@@ -77,7 +77,7 @@ export const Map = () => {
 							lat: marker.lat,
 							lng: marker.lng
 						}}
-						// icon={{ url: icono }}
+						// icon={{ icono }}
 						onClick={() => {
 							setSelected(marker);
 						}}
@@ -92,8 +92,8 @@ export const Map = () => {
 							setSelected(null);
 						}}>
 						<div>
-							<h2>Nombre del Local</h2>
-							<p>Creado: {formatRelative(selected.time, new Date())}</p>
+							<h2 className="text-primary">Nombre del Local</h2>
+							<p className="text-primary">Creado: {formatRelative(selected.time, new Date())}</p>
 						</div>
 					</InfoWindow>
 				) : null}
@@ -125,13 +125,14 @@ function Search() {
 		//componentes de búsqueda
 		<div className="search d-flex justify-content-center">
 			<Combobox
-				onSelect={async address => {
-					setValue(address, false); //actualizo la búsqueda
+				onSelect={async description => {
+					console.log(description);
+					setValue(description, false); //actualizo la búsqueda
 					clearSuggestions(); //limpio las sugerencias
 					try {
-						const results = await getGeocode({ address }); //obtengo las coordenadas de la dirección
-						console.log(results);
-						const { lat, lng } = await getLatLng(results[0]); //convierto el primer resultado a lat y lng
+						// const results = await getGeocode({ address: description }); //obtengo las coordenadas de la dirección
+						// console.log((results[0]));
+						// const { lat, lng } = await getLatLng(results[0]); //convierto el primer resultado a lat y lng
 					} catch (error) {
 						console.log("Error");
 					}
@@ -147,7 +148,9 @@ function Search() {
 				<ComboboxPopover>
 					<ComboboxList>
 						{status === "OK" &&
-							data.map(({ id, description }) => <ComboboxOption key={id} value={description} />)}
+							data.map(({ place_id, description }) => (
+								<ComboboxOption key={place_id} value={description} />
+							))}
 					</ComboboxList>
 				</ComboboxPopover>
 			</Combobox>

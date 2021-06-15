@@ -1,3 +1,5 @@
+import Swal from "sweetalert2";
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
@@ -7,30 +9,51 @@ const getState = ({ getStore, getActions, setStore }) => {
 			localData: {},
 			localInfo: {},
 			loggedIn: false,
-			registered: false
+			registered: false,
+			failRegistered: false
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
 
-			//login
-			login: () => {
+			enviarAlerta: (text, icon, timer, confButton) => {
+				Swal.fire({ text: text, icon: icon, timer: timer, ShowConfirmButton: confButton });
+			},
+
+			//login usuario
+			login: async () => {
 				const sendData = getStore().loginData;
-				fetch(process.env.BACKEND_URL + "/login", {
-					method: "POST",
-					headers: {
-						"Content-Type": "application/json"
-					},
-					body: JSON.stringify(sendData)
-				})
-					.then(resp => resp.json())
-					.then(resp => {
-						localStorage.setItem("token", resp.token);
-						if (resp.token !== undefined) {
-							setStore({ loggedIn: true });
-							setStore({ userInfo: resp.user });
-						}
-					})
-					.catch(error => console.log(error));
+				try {
+					let resp = await fetch(process.env.BACKEND_URL + "/login", {
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json"
+						},
+						body: JSON.stringify(sendData)
+					});
+					let data = await resp.json();
+					localStorage.setItem("token", data.token);
+					if (data.token !== undefined) {
+						setStore({ loggedIn: true });
+						setStore({ userInfo: data.user });
+						Swal.fire({
+							position: "center-top",
+							icon: "success",
+							title: "Correcto",
+							showConfirmButton: false,
+							timer: 1000
+						});
+					} else {
+						Swal.fire({
+							position: "center-top",
+							icon: "warning",
+							title: "Email o contraseña incorrectos",
+							showConfirmButton: false,
+							timer: 1500
+						});
+					}
+				} catch (error) {
+					console.error(error);
+				}
 			},
 			loginData: e => {
 				let data = { [e.target.name]: e.target.value };
@@ -60,7 +83,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.catch(error => {
 						console.log(error);
-						setStore({ registered: true });
+						setStore({ failRegistered: true });
 					});
 			},
 			signUpData: e => {
@@ -88,7 +111,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 			},
 
-			//registro local
+			//registro/crear local
 			createLocal: () => {
 				let localInfo = {
 					nombre: getStore().localData.nombre,
@@ -100,7 +123,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				fetch(process.env.BACKEND_URL + "/local", {
 					method: "POST",
 					headers: {
-						"Content-Type": "application/json"
+						"Content-Type": "application/json",
+						Authorization: localStorage.getItem("token")
 					},
 					body: JSON.stringify(localInfo)
 				})
@@ -134,6 +158,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.catch(error => {
 						console.log(error);
 					});
+			},
+
+			//obtener locales
+			getLocales: () => {
+				let localInfo = getStore().localData;
+				fetch(process.env.BACKEND_URL + "/local", {
+					method: "GET",
+					headers: {
+						"Content-Type": "application/json",
+						Authorization: localStorage.getItem("token")
+					},
+					body: JSON.stringify(localInfo)
+				})
+					.then(resp => resp.json())
+					.then(resp => setStore({ localData: resp }))
+					.catch(error => console.log("error", error));
 			}
 		}
 	};
