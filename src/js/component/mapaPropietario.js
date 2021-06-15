@@ -5,6 +5,7 @@ import usePlacesAutocomplete, { getGeocode, getLatLng } from "use-places-autocom
 import { Combobox, ComboboxInput, ComboboxPopover, ComboboxList, ComboboxOption } from "@reach/combobox";
 import "@reach/combobox/styles.css";
 import "../../styles/searchStyles.scss";
+import PropTypes from "prop-types";
 // import icono from "../../img/negocioIcon.svg";
 
 const libraries = ["places"];
@@ -57,15 +58,21 @@ export const Map = () => {
 		mapRef.current = map;
 	}, []);
 
+	//desplazarme hacia la búsqueda
+	const setCenter = ({ lat, lng }) => {
+		mapRef.current.setCenter({ lat, lng });
+		// mapRef.current.setZoom(14);
+	};
+
 	if (loadError) return "Error al cargar mapa";
 	if (!isLoaded) return "Cargando el mapa";
 
 	return (
 		<div className="d-flex justify-content-center">
-			<Search />
+			<Search setCenter={setCenter} />
 			<GoogleMap
 				mapContainerStyle={mapContainerStyle}
-				zoom={8}
+				zoom={14}
 				center={center}
 				options={options}
 				onClick={onMapClick}
@@ -103,7 +110,7 @@ export const Map = () => {
 };
 
 //función de búsqueda con autocompletado
-function Search() {
+function Search({ setCenter }) {
 	const {
 		ready,
 		value,
@@ -132,7 +139,8 @@ function Search() {
 					try {
 						const results = await getGeocode({ address }); //obtengo las coordenadas de la dirección
 						const { lat, lng } = await getLatLng(results[0]); //convierto el primer resultado a lat y lng
-						console.log(lat, lng);
+						setCenter({ lat, lng });
+						// console.log(lat, lng);
 					} catch (error) {
 						console.log("Error");
 					}
@@ -157,3 +165,6 @@ function Search() {
 		</div>
 	);
 }
+Search.propTypes = {
+	setCenter: PropTypes.func
+};
