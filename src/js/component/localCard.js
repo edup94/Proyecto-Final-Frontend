@@ -16,7 +16,7 @@ export const LocalCard = props => (
 					</button>
 					<h2 className="nombre-local p-3">{props.nombre}</h2>
 				</div>
-				<p className="local-bajada">{props.descripcion}</p>
+				<p className="local-bajada">Descripcion: {props.descripcion}</p>
 				<div className="row">
 					<div className="col-md-4">
 						<p>{props.horario}</p>

@@ -6,6 +6,7 @@ export const Edituser = () => (
 		<div className="form-group">
 			<label htmlFor="exampleFormControlInput1">Nombre de usuario</label>
 			<input
+                name="username"
 				type="text"
 				className="form-control"
 				id="exampleFormControlInput1"
@@ -14,20 +15,11 @@ export const Edituser = () => (
 		</div>
 		<div className="form-group">
 			<label htmlFor="exampleFormControlInput1">Nombre</label>
-			<input type="text" className="form-control" id="exampleFormControlInput1" placeholder="Ejemplo: Juan" />
+			<input name="nombre" type="text" className="form-control" id="exampleFormControlInput1" placeholder="Ejemplo: Juan" />
 		</div>
 		<div className="form-group">
 			<label htmlFor="exampleFormControlInput1">Apellido</label>
-			<input type="text" className="form-control" id="exampleFormControlInput1" placeholder="Ejemplo: Pérez" />
-		</div>
-		<div className="form-group">
-			<label htmlFor="exampleFormControlInput1">Lugar de residencia</label>
-			<input
-				type="text"
-				className="form-control"
-				id="exampleFormControlInput1"
-				placeholder="Ejemplo: Montevideo, Uruguay"
-			/>
+			<input name="apellido" type="text" className="form-control" id="exampleFormControlInput1" placeholder="Ejemplo: Pérez" />
 		</div>
 		<div className="form-group">
 			<label htmlFor="exampleFormControlInput1">

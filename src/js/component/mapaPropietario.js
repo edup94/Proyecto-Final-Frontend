@@ -6,7 +6,7 @@ import { Combobox, ComboboxInput, ComboboxPopover, ComboboxList, ComboboxOption 
 import "@reach/combobox/styles.css";
 import "../../styles/searchStyles.scss";
 import PropTypes from "prop-types";
-// import icono from "../../img/negocioIcon.svg";
+import icon from "../../img/IconoNegocio.png";
 
 const libraries = ["places"];
 
@@ -84,7 +84,7 @@ export const Map = () => {
 							lat: marker.lat,
 							lng: marker.lng
 						}}
-						// icon={{ icono }}
+						icon={icon}
 						onClick={() => {
 							setSelected(marker);
 						}}
@@ -99,7 +99,7 @@ export const Map = () => {
 							setSelected(null);
 						}}>
 						<div>
-							<h2 className="text-primary">Nombre del Local</h2>
+							<h2 className="text-primary">Nombre del Local</h2> {/*cambiar a algo acorde*/}
 							<p className="text-primary">Creado: {formatRelative(selected.time, new Date())}</p>
 						</div>
 					</InfoWindow>
@@ -133,14 +133,12 @@ function Search({ setCenter }) {
 		<div className="search d-flex justify-content-center">
 			<Combobox
 				onSelect={async address => {
-					console.log(address);
 					setValue(address, false); //actualizo la búsqueda
 					clearSuggestions(); //limpio las sugerencias
 					try {
 						const results = await getGeocode({ address }); //obtengo las coordenadas de la dirección
 						const { lat, lng } = await getLatLng(results[0]); //convierto el primer resultado a lat y lng
 						setCenter({ lat, lng });
-						// console.log(lat, lng);
 					} catch (error) {
 						console.log("Error");
 					}
