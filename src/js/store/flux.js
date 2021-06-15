@@ -40,16 +40,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 							icon: "success",
 							title: "Correcto",
 							showConfirmButton: false,
+							timer: 1000
+						});
+					} else {
+						Swal.fire({
+							position: "center-top",
+							icon: "warning",
+							title: "Email o contraseña incorrectos",
+							showConfirmButton: false,
 							timer: 1500
 						});
 					}
-					Swal.fire({
-						position: "center-top",
-						icon: "warning",
-						title: "Email o contraseña incorrectos",
-						showConfirmButton: false,
-						timer: 1500
-					});
 				} catch (error) {
 					console.error(error);
 				}

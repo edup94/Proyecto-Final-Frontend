@@ -125,12 +125,13 @@ function Search() {
 		//componentes de búsqueda
 		<div className="search d-flex justify-content-center">
 			<Combobox
-				onSelect={async address => {
-					setValue(address, false); //actualizo la búsqueda
+				onSelect={async description => {
+					console.log(description);
+					setValue(description, false); //actualizo la búsqueda
 					clearSuggestions(); //limpio las sugerencias
 					try {
-						const results = await getGeocode({ address }); //obtengo las coordenadas de la dirección
-						console.log(results[0]);
+						// const results = await getGeocode({ address: description }); //obtengo las coordenadas de la dirección
+						// console.log((results[0]));
 						// const { lat, lng } = await getLatLng(results[0]); //convierto el primer resultado a lat y lng
 					} catch (error) {
 						console.log("Error");
@@ -147,7 +148,9 @@ function Search() {
 				<ComboboxPopover>
 					<ComboboxList>
 						{status === "OK" &&
-							data.map(({ id, description }) => <ComboboxOption key={id} value={description} />)}
+							data.map(({ place_id, description }) => (
+								<ComboboxOption key={place_id} value={description} />
+							))}
 					</ComboboxList>
 				</ComboboxPopover>
 			</Combobox>
