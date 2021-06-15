@@ -19,13 +19,13 @@ export const LocalCard = props => (
 				<p className="local-bajada">{props.descripcion}</p>
 				<div className="row">
 					<div className="col-md-4">
-						<p3>{props.horario}</p3>
+						<p>{props.horario}</p>
 					</div>
 					<div className="col-md-4">
-						<p3>{props.telefono}</p3>
+						<p>{props.telefono}</p>
 					</div>
 					<div className="col-md-4">
-						<p3>{props.direccion}</p3>
+						<p>{props.direccion}</p>
 					</div>
 				</div>
 				<div className="comentarios pt-3">

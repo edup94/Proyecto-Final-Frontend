@@ -26,7 +26,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 					let data = await resp.json();
 					localStorage.setItem("token", data.token);
-					console.log(data.token);
 					if (data.token !== undefined) {
 						setStore({ loggedIn: true });
 						setStore({ userInfo: data.user });
@@ -157,7 +156,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			//obtener locales
 			getLocales: () => {
-				// console.log(process.env.BACKEND_URL + "/local");
 				var myHeaders = new Headers();
 				myHeaders.append("Content-Type", "application/json");
 				myHeaders.append("Authorization", "Bearer " + localStorage.getItem("token"));
