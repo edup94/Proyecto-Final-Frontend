@@ -6,6 +6,7 @@ import { Landing } from "./views/landing";
 import { Login } from "./views/login";
 import { Home } from "./views/home";
 import { Register } from "./views/register";
+import { Terminos } from "./views/terminos";
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { Recover } from "./views/recover";
@@ -40,6 +41,9 @@ const Layout = () => {
 						</Route>
 						<Route exact path="/recover">
 							<Recover />
+						</Route>
+						<Route exact path="/terminos">
+							<Terminos />
 						</Route>
 						<Route>
 							<h1>Not found!</h1>
