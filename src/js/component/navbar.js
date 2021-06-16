@@ -14,18 +14,13 @@ export const Navbar = () => {
 			<div className="collapse navbar-collapse" id="collapsibleNavbar">
 				<ul className="nav nav-pills ml-auto">
 					<li className="nav-item">
-						<Link to="/register" className="btn btn-primary">
-							Registro
+						<Link to="/login" className="btn btn-primary">
+							Login
 						</Link>
 					</li>
 					<li className="nav-item">
 						<Link to="/" className="btn btn-primary ml-1">
 							Favoritos
-						</Link>
-					</li>
-					<li className="nav-item">
-						<Link to="/" className="btn btn-primary ml-1">
-							Bici-friendly
 						</Link>
 					</li>
 					<li className="nav-item">

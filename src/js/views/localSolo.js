@@ -1,23 +1,18 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 import { useParams } from "react-router-dom";
-import { LocalCard } from "../component/localCard";
+import { LocalSingleCard } from "../component/localCard";
 
-export const Home = () => {
+export const LocalSolo = () => {
 	const { store, actions } = useContext(Context);
 	const { theid } = useParams();
 
-	// useEffect(() => {
-	// 		window.scrollTo(0, 0);
-	// 	}, []);
-
 	return (
 		<div className="container mt-5">
-			<h2 className="d-flex justify-content-center text-primary">Locales</h2>
 			<div className="row justify-content-around">
 				{store.localData.map((element, i) => {
 					return (
-						<LocalCard
+						<LocalSingleCard
 							key={i}
 							nombre={element.nombre}
 							descripcion={element.descripcion}

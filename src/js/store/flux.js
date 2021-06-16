@@ -9,6 +9,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			localData: [],
 			localInfo: {},
 			comments: [],
+			favorites: [],
 			loggedIn: false,
 			registered: false,
 			failRegistered: false
@@ -75,11 +76,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(function(response) {
 						if (!response.ok) {
 							Swal.fire({
-								position: "center-top",
+								position: "center",
 								icon: "warning",
-								title: "Ya existe un usuario con este email",
+								title: "Ya existe un usuario con este email o username.",
 								showConfirmButton: false,
-								timer: 2000
+								timer: 2500
 							});
 							throw Error(response.statusText);
 						}
@@ -87,7 +88,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.then(function(response) {
 						Swal.fire({
-							position: "center-top",
+							position: "center",
 							icon: "success",
 							title: "Usuario creado!",
 							showConfirmButton: false,
@@ -116,9 +117,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					body: JSON.stringify(newDataUser)
 				})
 					.then(resp => resp.json())
-					.then(resp => {
-						console.log(resp);
-						setStore({ userInfo: resp });
+					.then(result => {
+						console.log(result);
+						setStore({ userInfo: result });
 					})
 					.catch(error => {
 						console.log(error);
@@ -165,9 +166,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					body: JSON.stringify(newLocalData)
 				})
 					.then(resp => resp.json())
-					.then(resp => {
-						console.log(resp);
-						setStore({ localInfo: resp });
+					.then(result => {
+						console.log(result);
+						setStore({ localInfo: result });
 					})
 					.catch(error => {
 						console.log(error);
@@ -227,6 +228,24 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(response => response.json())
 					.then(response => setStore({ comments: response }))
 					.catch(error => console.log("error", error));
+			},
+
+			//agregar favorito
+			addFavorite: fav => {
+				let store = getStore();
+				setStore({ favorites: [...store.favorites, fav] });
+			},
+
+			//borrar favorito
+			deleteFavorite: fav => {
+				function eliminarFav(guardarArray) {
+					if (guardarArray === fav) {
+						return false;
+					} else return true;
+				}
+				let store = getStore();
+				let guardarArray = store.favorites.filter(eliminarFav);
+				setStore({ favorites: guardarArray });
 			}
 		}
 	};

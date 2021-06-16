@@ -1,12 +1,12 @@
 import React from "react";
 import "../../styles/home.scss";
 
-export const Edituser = () => (
+export const EditUser = () => (
 	<form className="container col-5 justify-content-center pt-5">
 		<div className="form-group">
 			<label htmlFor="exampleFormControlInput1">Nombre de usuario</label>
 			<input
-                name="username"
+				name="username"
 				type="text"
 				className="form-control"
 				id="exampleFormControlInput1"
@@ -15,39 +15,32 @@ export const Edituser = () => (
 		</div>
 		<div className="form-group">
 			<label htmlFor="exampleFormControlInput1">Nombre</label>
-			<input name="nombre" type="text" className="form-control" id="exampleFormControlInput1" placeholder="Ejemplo: Juan" />
+			<input
+				name="nombre"
+				type="text"
+				className="form-control"
+				id="exampleFormControlInput1"
+				placeholder="Ejemplo: Juan"
+			/>
 		</div>
 		<div className="form-group">
 			<label htmlFor="exampleFormControlInput1">Apellido</label>
-			<input name="apellido" type="text" className="form-control" id="exampleFormControlInput1" placeholder="Ejemplo: Pérez" />
+			<input
+				name="apellido"
+				type="text"
+				className="form-control"
+				id="exampleFormControlInput1"
+				placeholder="Ejemplo: Pérez"
+			/>
 		</div>
 		<div className="form-group">
-			<label htmlFor="exampleFormControlInput1">
-				Email (no lo publicaremos, es para contactarte en caso de que pierdas el acceso a tu cuenta)
-			</label>
+			<label htmlFor="exampleFormControlInput1">Email</label>
 			<input
 				type="email"
 				className="form-control"
 				id="exampleFormControlInput1"
 				placeholder="tuemail@ejemplo.com"
 			/>
-		</div>
-		<div className="container pt-2">
-			<div className="form-group pb-3">
-				<label htmlFor="exampleFormControlFile1">Subí una foto de perfil</label>
-				<input type="file" className="form-control-file" id="exampleFormControlFile1" />
-			</div>
-			<div>
-				<button type="button" className="btn btn-primary">
-					Guardar
-				</button>
-				<div className="custom-control custom-checkbox pt-3">
-					<input type="checkbox" className="custom-control-input" id="customCheck1" />
-					<label className="custom-control-label" htmlFor="customCheck1">
-						Acepto los términos y condiciones
-					</label>
-				</div>
-			</div>
 		</div>
 	</form>
 );
