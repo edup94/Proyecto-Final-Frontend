@@ -11,6 +11,8 @@ import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { Recover } from "./views/recover";
 import { Map } from "./component/mapaPropietario";
+import { EditUser } from "./views/editUser";
+import { LocalSolo } from "./views/localSolo";
 
 //create your first component
 const Layout = () => {
@@ -33,6 +35,9 @@ const Layout = () => {
 						<Route exact path="/home">
 							<Home />
 						</Route>
+						<Route exact path="/localsolo">
+							<LocalSolo />
+						</Route>
 						<Route exact path="/login">
 							<Login />
 						</Route>
@@ -41,6 +46,9 @@ const Layout = () => {
 						</Route>
 						<Route exact path="/recover">
 							<Recover />
+						</Route>
+						<Route exact path="/edituser">
+							<EditUser />
 						</Route>
 						<Route exact path="/terminos">
 							<Terminos />

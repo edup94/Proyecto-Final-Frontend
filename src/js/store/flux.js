@@ -8,6 +8,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			signUpData: {},
 			localData: [],
 			localInfo: {},
+			comments: [],
+			favorites: [],
 			loggedIn: false,
 			registered: false,
 			failRegistered: false
@@ -26,7 +28,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 					let data = await resp.json();
 					localStorage.setItem("token", data.token);
-					console.log(data.token);
 					if (data.token !== undefined) {
 						setStore({ loggedIn: true });
 						setStore({ userInfo: data.user });
@@ -72,11 +73,30 @@ const getState = ({ getStore, getActions, setStore }) => {
 					},
 					body: JSON.stringify(userInfo)
 				})
-					.then(resp => resp.json())
-					.then(resp => {
+					.then(function(response) {
+						if (!response.ok) {
+							Swal.fire({
+								position: "center",
+								icon: "warning",
+								title: "Ya existe un usuario con este email o username.",
+								showConfirmButton: false,
+								timer: 2500
+							});
+							throw Error(response.statusText);
+						}
+						return response;
+					})
+					.then(function(response) {
+						Swal.fire({
+							position: "center",
+							icon: "success",
+							title: "Usuario creado!",
+							showConfirmButton: false,
+							timer: 1000
+						});
 						setStore({ registered: true });
 					})
-					.catch(error => {
+					.catch(function(error) {
 						console.log(error);
 						setStore({ failRegistered: true });
 					});
@@ -97,9 +117,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					body: JSON.stringify(newDataUser)
 				})
 					.then(resp => resp.json())
-					.then(resp => {
-						console.log(resp);
-						setStore({ userInfo: resp });
+					.then(result => {
+						console.log(result);
+						setStore({ userInfo: result });
 					})
 					.catch(error => {
 						console.log(error);
@@ -146,9 +166,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					body: JSON.stringify(newLocalData)
 				})
 					.then(resp => resp.json())
-					.then(resp => {
-						console.log(resp);
-						setStore({ localInfo: resp });
+					.then(result => {
+						console.log(result);
+						setStore({ localInfo: result });
 					})
 					.catch(error => {
 						console.log(error);
@@ -157,7 +177,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			//obtener locales
 			getLocales: () => {
-				// console.log(process.env.BACKEND_URL + "/local");
 				var myHeaders = new Headers();
 				myHeaders.append("Content-Type", "application/json");
 				myHeaders.append("Authorization", "Bearer " + localStorage.getItem("token"));
@@ -172,6 +191,61 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(response => response.json())
 					.then(response => setStore({ localData: response }))
 					.catch(error => console.log("error", error));
+			},
+
+			//crear comentario
+			createComentario: () => {
+				var myHeaders = new Headers();
+				myHeaders.append("Content-Type", "application/json");
+				myHeaders.append("Authorization", "Bearer " + localStorage.getItem("token"));
+
+				var raw = JSON.stringify();
+
+				var requestOptions = {
+					method: "POST",
+					headers: myHeaders,
+					redirect: "follow"
+				};
+
+				fetch(process.env.BACKEND_URL + "/post", requestOptions)
+					.then(response => response.json())
+					.then(result => setStore({ comments: result }))
+					.catch(error => console.log("error", error));
+			},
+			//obtener comentarios
+			getComentarios: () => {
+				var myHeaders = new Headers();
+				myHeaders.append("Content-Type", "application/json");
+				myHeaders.append("Authorization", "Bearer " + localStorage.getItem("token"));
+
+				var requestOptions = {
+					method: "GET",
+					headers: myHeaders,
+					redirect: "follow"
+				};
+
+				fetch(process.env.BACKEND_URL + "/local", requestOptions)
+					.then(response => response.json())
+					.then(response => setStore({ comments: response }))
+					.catch(error => console.log("error", error));
+			},
+
+			//agregar favorito
+			addFavorite: fav => {
+				let store = getStore();
+				setStore({ favorites: [...store.favorites, fav] });
+			},
+
+			//borrar favorito
+			deleteFavorite: fav => {
+				function eliminarFav(guardarArray) {
+					if (guardarArray === fav) {
+						return false;
+					} else return true;
+				}
+				let store = getStore();
+				let guardarArray = store.favorites.filter(eliminarFav);
+				setStore({ favorites: guardarArray });
 			}
 		}
 	};

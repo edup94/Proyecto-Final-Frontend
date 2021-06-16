@@ -5,7 +5,8 @@ import usePlacesAutocomplete, { getGeocode, getLatLng } from "use-places-autocom
 import { Combobox, ComboboxInput, ComboboxPopover, ComboboxList, ComboboxOption } from "@reach/combobox";
 import "@reach/combobox/styles.css";
 import "../../styles/searchStyles.scss";
-// import icono from "../../img/negocioIcon.svg";
+import PropTypes from "prop-types";
+import icon from "../../img/IconoNegocio.png";
 
 const libraries = ["places"];
 
@@ -57,12 +58,18 @@ export const Map = () => {
 		mapRef.current = map;
 	}, []);
 
+	//desplazarme hacia la búsqueda
+	const setCenter = ({ lat, lng }) => {
+		mapRef.current.setCenter({ lat, lng });
+		mapRef.current.setZoom(10);
+	};
+
 	if (loadError) return "Error al cargar mapa";
 	if (!isLoaded) return "Cargando el mapa";
 
 	return (
 		<div className="d-flex justify-content-center">
-			<Search />
+			<Search setCenter={setCenter} />
 			<GoogleMap
 				mapContainerStyle={mapContainerStyle}
 				zoom={8}
@@ -77,7 +84,7 @@ export const Map = () => {
 							lat: marker.lat,
 							lng: marker.lng
 						}}
-						// icon={{ icono }}
+						icon={icon}
 						onClick={() => {
 							setSelected(marker);
 						}}
@@ -92,7 +99,7 @@ export const Map = () => {
 							setSelected(null);
 						}}>
 						<div>
-							<h2 className="text-primary">Nombre del Local</h2>
+							<h2 className="text-primary">Nombre del Local</h2> {/*cambiar a algo acorde*/}
 							<p className="text-primary">Creado: {formatRelative(selected.time, new Date())}</p>
 						</div>
 					</InfoWindow>
@@ -103,7 +110,7 @@ export const Map = () => {
 };
 
 //función de búsqueda con autocompletado
-function Search() {
+function Search({ setCenter }) {
 	const {
 		ready,
 		value,
@@ -125,14 +132,13 @@ function Search() {
 		//componentes de búsqueda
 		<div className="search d-flex justify-content-center">
 			<Combobox
-				onSelect={async description => {
-					console.log(description);
-					setValue(description, false); //actualizo la búsqueda
+				onSelect={async address => {
+					setValue(address, false); //actualizo la búsqueda
 					clearSuggestions(); //limpio las sugerencias
 					try {
-						// const results = await getGeocode({ address: description }); //obtengo las coordenadas de la dirección
-						// console.log((results[0]));
-						// const { lat, lng } = await getLatLng(results[0]); //convierto el primer resultado a lat y lng
+						const results = await getGeocode({ address }); //obtengo las coordenadas de la dirección
+						const { lat, lng } = await getLatLng(results[0]); //convierto el primer resultado a lat y lng
+						setCenter({ lat, lng });
 					} catch (error) {
 						console.log("Error");
 					}
@@ -157,3 +163,6 @@ function Search() {
 		</div>
 	);
 }
+Search.propTypes = {
+	setCenter: PropTypes.func
+};
