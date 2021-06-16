@@ -61,7 +61,7 @@ export const Map = () => {
 	//desplazarme hacia la búsqueda
 	const setCenter = ({ lat, lng }) => {
 		mapRef.current.setCenter({ lat, lng });
-		// mapRef.current.setZoom(14);
+		mapRef.current.setZoom(12);
 	};
 
 	if (loadError) return "Error al cargar mapa";
@@ -72,7 +72,7 @@ export const Map = () => {
 			<Search setCenter={setCenter} />
 			<GoogleMap
 				mapContainerStyle={mapContainerStyle}
-				zoom={14}
+				zoom={8}
 				center={center}
 				options={options}
 				onClick={onMapClick}
