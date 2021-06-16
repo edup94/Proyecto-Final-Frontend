@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 import { useParams } from "react-router-dom";
 import { LocalSingleCard } from "../component/localCard";
+import { Comment } from "../component/comentarioCard";
 
 export const LocalSolo = () => {
 	const { store, actions } = useContext(Context);
@@ -22,6 +23,17 @@ export const LocalSolo = () => {
 						/>
 					);
 				})}
+			</div>
+			<div className="row justify-content-around">
+				{!store.comments ? (
+					<p>Cargando...</p>
+				) : store.comments.length > 0 ? (
+					store.comments.map((element, i) => {
+						return <Comment key={i} username={element.username} comentario={element.comentario} />;
+					})
+				) : (
+					<p>No hay comentarios aún.</p>
+				)}
 			</div>
 		</div>
 	);

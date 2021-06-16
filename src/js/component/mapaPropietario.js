@@ -61,7 +61,7 @@ export const Map = () => {
 	//desplazarme hacia la búsqueda
 	const setCenter = ({ lat, lng }) => {
 		mapRef.current.setCenter({ lat, lng });
-		mapRef.current.setZoom(10);
+		mapRef.current.setZoom(24);
 	};
 
 	if (loadError) return "Error al cargar mapa";

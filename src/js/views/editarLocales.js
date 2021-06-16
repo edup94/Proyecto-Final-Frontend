@@ -9,7 +9,7 @@ export const EditarLocales = () => {
 	return (
 		<form className="container col-5 mx-auto">
 			<div>
-				<div className="form-group">
+				<div className="form-group text-primary">
 					<label htmlFor="exampleFormControlInput1">Nombre de Local</label>
 					<input
 						onChange={actions.localData}
@@ -20,7 +20,7 @@ export const EditarLocales = () => {
 						placeholder="Nombre de tu negocio"
 					/>
 				</div>
-				<div className="form-group">
+				<div className="form-group text-primary">
 					<label htmlFor="exampleFormControlTextarea1">Describí brevemente tu negocio</label>
 					<textarea
 						onChange={actions.localData}
@@ -30,20 +30,7 @@ export const EditarLocales = () => {
 						rows="5"
 					/>
 				</div>
-				<div className="form-group">
-					<label htmlFor="exampleFormControlInput1">
-						Email (no lo publicaremos, es para contactarte en caso de que pierdas el acceso a tu cuenta)
-					</label>
-					<input
-						onChange={actions.localData}
-						name="email"
-						type="email"
-						className="form-control"
-						id="exampleFormControlInput1"
-						placeholder="tuemail@ejemplo.com"
-					/>
-				</div>
-				<div className="form-group">
+				<div className="form-group text-primary">
 					<label htmlFor="exampleFormControlInput1">Teléfono</label>
 					<input
 						onChange={actions.localData}
@@ -54,7 +41,7 @@ export const EditarLocales = () => {
 						placeholder="2456 7890"
 					/>
 				</div>
-				<div className="form-group">
+				<div className="form-group text-primary">
 					<label htmlFor="exampleFormControlInput1">Dirección de tu Local</label>
 					<input
 						onChange={actions.localData}
@@ -65,7 +52,7 @@ export const EditarLocales = () => {
 						placeholder="Calle 1234, Localidad, Departamento"
 					/>
 				</div>
-				<div className="form-group">
+				<div className="form-group text-primary">
 					<label htmlFor="exampleFormControlInput9">Horarios</label>
 					<input
 						onChange={actions.localData}

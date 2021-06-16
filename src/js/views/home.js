@@ -7,9 +7,9 @@ export const Home = () => {
 	const { store, actions } = useContext(Context);
 	const { theid } = useParams();
 
-	// useEffect(() => {
-	// 		window.scrollTo(0, 0);
-	// 	}, []);
+	useEffect(() => {
+		actions.getLocales();
+	}, []);
 
 	return (
 		<div className="container mt-5">

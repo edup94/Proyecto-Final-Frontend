@@ -9,7 +9,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			localData: [],
 			localInfo: {},
 			comments: [],
-			favorites: [],
+			favorites: null,
 			loggedIn: false,
 			registered: false,
 			failRegistered: false
@@ -76,7 +76,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(function(response) {
 						if (!response.ok) {
 							Swal.fire({
-								position: "center",
+								position: "top",
 								icon: "warning",
 								title: "Ya existe un usuario con este email o username.",
 								showConfirmButton: false,
@@ -88,7 +88,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.then(function(response) {
 						Swal.fire({
-							position: "center",
+							position: "top",
 							icon: "success",
 							title: "Usuario creado!",
 							showConfirmButton: false,
@@ -135,20 +135,25 @@ const getState = ({ getStore, getActions, setStore }) => {
 					horario: getStore().localData.horario,
 					descripcion: getStore().localData.descripcion
 				};
-				fetch(process.env.BACKEND_URL + "/local", {
+				var myHeaders = new Headers();
+				myHeaders.append("Content-Type", "application/json");
+				myHeaders.append("Authorization", "Bearer " + localStorage.getItem("token"));
+
+				var raw = JSON.stringify({
+					localInfo
+				});
+
+				var requestOptions = {
 					method: "POST",
-					headers: {
-						"Content-Type": "application/json",
-						Authorization: localStorage.getItem("token")
-					},
-					body: JSON.stringify(localInfo)
-				})
-					.then(resp => resp.json())
-					.then(resp => {
-						console.log(resp);
-						setStore({ localInfo: resp });
-					})
-					.catch(error => console.log(error));
+					headers: myHeaders,
+					body: raw,
+					redirect: "follow"
+				};
+
+				fetch(process.env.BACKEND_URL + "/local", requestOptions)
+					.then(response => response.json())
+					.then(result => setStore({ localData: result }))
+					.catch(error => console.log("error", error));
 			},
 			localData: e => {
 				let data = { [e.target.name]: e.target.value };
@@ -231,21 +236,56 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			//agregar favorito
-			addFavorite: fav => {
-				let store = getStore();
-				setStore({ favorites: [...store.favorites, fav] });
+			addFavorite: () => {
+				const sendData = getStore();
+				fetch(process.env.BACKEND_URL + "/localFav", {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+						Authorization: localStorage.getItem("token")
+					},
+					body: JSON.stringify(sendData)
+				})
+					.then(resp => resp.json())
+					.then(resp => {
+						setStore({ favorites: resp });
+					})
+					.catch(error => console.log(error));
+			},
+
+			//obtener Favorites
+			getLocalFav: async () => {
+				var myHeaders = new Headers();
+				myHeaders.append("Content-Type", "application/json");
+				myHeaders.append("Authorization", "Bearer " + localStorage.getItem("token"));
+
+				var requestOptions = {
+					method: "GET",
+					headers: myHeaders,
+					redirect: "follow"
+				};
+
+				fetch(process.env.BACKEND_URL + "/localFav", requestOptions)
+					.then(response => response.json())
+					.then(response => setStore({ favorites: response }))
+					.catch(error => console.log("error", error));
 			},
 
 			//borrar favorito
-			deleteFavorite: fav => {
-				function eliminarFav(guardarArray) {
-					if (guardarArray === fav) {
-						return false;
-					} else return true;
-				}
-				let store = getStore();
-				let guardarArray = store.favorites.filter(eliminarFav);
-				setStore({ favorites: guardarArray });
+			deleteFavorite: id => {
+				var myHeaders = new Headers();
+				myHeaders.append("Content-Type", "application/json");
+				myHeaders.append("Authorization", "Bearer " + localStorage.getItem("token"));
+
+				var requestOptions = {
+					method: "DELETE",
+					headers: myHeaders,
+					redirect: "follow"
+				};
+				fetch(`${process.env.BACKEND_URL}/localFav/${id}`, requestOptions)
+					.then(response => response.json())
+					.then(result => setStore({ favorites: result }))
+					.catch(error => console.log("error", error));
 			}
 		}
 	};

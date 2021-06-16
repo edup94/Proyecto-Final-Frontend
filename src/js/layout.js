@@ -15,6 +15,7 @@ import { EditUser } from "./views/editUser";
 import { LocalSolo } from "./views/localSolo";
 import { CrearLocales } from "./views/crearLocales";
 import { EditarLocales } from "./views/editarLocales";
+import { LocalesFavoritos } from "./views/localesFavoritos";
 
 //create your first component
 const Layout = () => {
@@ -57,6 +58,9 @@ const Layout = () => {
 						</Route>
 						<Route exact path="/editlocal">
 							<EditarLocales />
+						</Route>
+						<Route exact path="/favoritelocal">
+							<LocalesFavoritos />
 						</Route>
 						<Route exact path="/terminos">
 							<Terminos />

@@ -36,6 +36,12 @@ export const LocalCard = props => {
 							<p> {props.telefono}</p>
 						</div>
 					</div>
+					<div className="row">
+						<div className="col-md-4">
+							<p className="text-primary"> Dirección:</p>
+							<p> {props.direccion}</p>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

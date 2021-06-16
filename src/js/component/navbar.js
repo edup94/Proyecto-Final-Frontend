@@ -14,8 +14,13 @@ export const Navbar = () => {
 			<div className="collapse navbar-collapse" id="collapsibleNavbar">
 				<ul className="nav nav-pills ml-auto">
 					<li className="nav-item">
-						<Link to="/login" className="btn btn-primary">
+						<Link to="/login" className="btn btn-primary ml-1">
 							Login
+						</Link>
+					</li>
+					<li className="nav-item">
+						<Link to="/home" className="btn btn-primary ml-1">
+							Bici-Friendly
 						</Link>
 					</li>
 					<li className="nav-item">
@@ -24,7 +29,7 @@ export const Navbar = () => {
 						</Link>
 					</li>
 					<li className="nav-item">
-						<Link to="/" className="btn btn-primary ml-1">
+						<Link to="/favoritelocal" className="btn btn-primary ml-1">
 							Favoritos
 						</Link>
 					</li>
