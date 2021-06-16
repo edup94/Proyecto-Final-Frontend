@@ -8,6 +8,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			signUpData: {},
 			localData: [],
 			localInfo: {},
+			comments: [],
 			loggedIn: false,
 			registered: false,
 			failRegistered: false
@@ -71,11 +72,30 @@ const getState = ({ getStore, getActions, setStore }) => {
 					},
 					body: JSON.stringify(userInfo)
 				})
-					.then(resp => resp.json())
-					.then(resp => {
+					.then(function(response) {
+						if (!response.ok) {
+							Swal.fire({
+								position: "center-top",
+								icon: "warning",
+								title: "Ya existe un usuario con este email",
+								showConfirmButton: false,
+								timer: 2000
+							});
+							throw Error(response.statusText);
+						}
+						return response;
+					})
+					.then(function(response) {
+						Swal.fire({
+							position: "center-top",
+							icon: "success",
+							title: "Usuario creado!",
+							showConfirmButton: false,
+							timer: 1000
+						});
 						setStore({ registered: true });
 					})
-					.catch(error => {
+					.catch(function(error) {
 						console.log(error);
 						setStore({ failRegistered: true });
 					});
@@ -169,6 +189,43 @@ const getState = ({ getStore, getActions, setStore }) => {
 				fetch(process.env.BACKEND_URL + "/local", requestOptions)
 					.then(response => response.json())
 					.then(response => setStore({ localData: response }))
+					.catch(error => console.log("error", error));
+			},
+
+			//crear comentario
+			createComentario: () => {
+				var myHeaders = new Headers();
+				myHeaders.append("Content-Type", "application/json");
+				myHeaders.append("Authorization", "Bearer " + localStorage.getItem("token"));
+
+				var raw = JSON.stringify();
+
+				var requestOptions = {
+					method: "POST",
+					headers: myHeaders,
+					redirect: "follow"
+				};
+
+				fetch(process.env.BACKEND_URL + "/post", requestOptions)
+					.then(response => response.json())
+					.then(result => setStore({ comments: result }))
+					.catch(error => console.log("error", error));
+			},
+			//obtener comentarios
+			getComentarios: () => {
+				var myHeaders = new Headers();
+				myHeaders.append("Content-Type", "application/json");
+				myHeaders.append("Authorization", "Bearer " + localStorage.getItem("token"));
+
+				var requestOptions = {
+					method: "GET",
+					headers: myHeaders,
+					redirect: "follow"
+				};
+
+				fetch(process.env.BACKEND_URL + "/local", requestOptions)
+					.then(response => response.json())
+					.then(response => setStore({ comments: response }))
 					.catch(error => console.log("error", error));
 			}
 		}
