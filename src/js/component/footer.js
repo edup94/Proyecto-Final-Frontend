@@ -19,7 +19,7 @@ export const Footer = () => {
 				</div>
 				<div className="col col-md-auto">
 					<a href="" className="generic-anchor footer-list-anchor">
-						<img src={logo} className="card-img-top" alt="..." />
+						<img src={logo} className="d-none d-md-block" alt="..." />
 					</a>
 				</div>
 				<div className="col d-flex justify-content-center">
@@ -37,7 +37,7 @@ export const Footer = () => {
 			{/* Iconos redes */}
 			<div className="social-media-icons text-center">
 				<div className="row d-flex justify-content-center flex-wrap">
-					<div className="col col-sm-auto">
+					<div className="col col-sm-auto py-2">
 						<a
 							href="https://www.facebook.com/profile.php?id=100068864116110"
 							className="generic-anchor"
@@ -45,17 +45,17 @@ export const Footer = () => {
 							<i className="fab fa-facebook fa-3x fa-lg" />
 						</a>
 					</div>
-					<div className="col col-sm-auto">
+					<div className="col col-sm-auto py-2">
 						<a href="https://twitter.com/@enBICIando" className="generic-anchor" title="Twitter">
 							<i className="fab fa-twitter fa-3x fa-lg" />
 						</a>
 					</div>
-					<div className="col col-sm-auto">
+					<div className="col col-sm-auto py-2">
 						<a href="http://instagram.com/@enbici.ando" className="generic-anchor" title="Instagram">
 							<i className="fab fa-instagram fa-3x fa-lg" />
 						</a>
 					</div>
-					<div className="col col-sm-auto">
+					<div className="col col-sm-auto py-2">
 						<a
 							href="https://www.youtube.com/channel/UCnRRSvCIP56EOj7JAyfsJrw"
 							className="generic-anchor"
@@ -63,7 +63,7 @@ export const Footer = () => {
 							<i className="fab fa-youtube fa-3x fa-lg" />
 						</a>
 					</div>
-					<div className="col col-sm-auto">
+					<div className="col col-sm-auto py-2">
 						<a
 							href="https://www.pinterest.com/@enbiciando9302/"
 							className="generic-anchor"
@@ -80,11 +80,11 @@ export const Footer = () => {
 					<p>enBICIando, Uruguay, 2021</p>
 					<div className="d-flex justify-content-center">
 						<div className="col-2">
-							<div className="d-flex justify-content-between">
+							<div className="d-flex justify-content-center">
 								<Link to="/login">
 									<h6 className="card-text">Términos</h6>
 								</Link>
-								<p> | </p>
+								<p className="mx-2"> | </p>
 								<Link to="/login">
 									<h6 className="card-text">Privacidad</h6>
 								</Link>
