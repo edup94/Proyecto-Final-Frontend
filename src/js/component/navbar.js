@@ -19,6 +19,11 @@ export const Navbar = () => {
 						</Link>
 					</li>
 					<li className="nav-item">
+						<Link to="/createlocal" className="btn btn-primary ml-1">
+							Locales
+						</Link>
+					</li>
+					<li className="nav-item">
 						<Link to="/" className="btn btn-primary ml-1">
 							Favoritos
 						</Link>

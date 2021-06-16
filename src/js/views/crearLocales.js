@@ -1,69 +1,93 @@
-import React from "react";
-import rigoImage from "../../img/rigo-baby.jpg";
+import React, { useContext } from "react";
 import "../../styles/home.scss";
+import { Context } from "../store/appContext";
+import { Redirect } from "react-router-dom";
 
-export const CrearLocales = () => (
-	<form className="container col-5 mx-auto">
-		<div>
-			<div className="form-group">
-				<label htmlFor="exampleFormControlInput1">Nombre de Local</label>
-				<input
-					type="text"
-					className="form-control"
-					id="exampleFormControlInput1"
-					placeholder="Nombre de tu negocio"
-				/>
-			</div>
-			<div className="form-group">
-				<label htmlFor="exampleFormControlTextarea1">Describí brevemente tu negocio</label>
-				<textarea className="form-control" id="exampleFormControlTextarea1" rows="7" />
-			</div>
-			<div className="form-group">
-				<label htmlFor="exampleFormControlInput1">
-					Email (no lo publicaremos, es para contactarte en caso de que pierdas el acceso a tu cuenta)
-				</label>
-				<input
-					type="email"
-					className="form-control"
-					id="exampleFormControlInput1"
-					placeholder="tuemail@ejemplo.com"
-				/>
-			</div>
-			<div className="form-group">
-				<label htmlFor="exampleFormControlInput1">Teléfono</label>
-				<input type="text" className="form-control" id="exampleFormControlInput1" placeholder="2456 7890" />
-			</div>
-			<div className="form-group">
-				<label htmlFor="exampleFormControlInput1">Dirección de tu Local</label>
-				<input
-					type="text"
-					className="form-control"
-					id="exampleFormControlInput1"
-					placeholder="Calle 1234, Localidad, Departamento"
-				/>
-			</div>
-			<div className="form-group">
-				<label htmlFor="exampleFormControlTextarea1">Horarios</label>
-				<textarea className="form-control" id="exampleFormControlTextarea1" rows="7" />
-			</div>
+export const CrearLocales = () => {
+	const { store, actions } = useContext(Context);
 
-			<div className="container">
-				<div className="form-group py-3">
-					<label htmlFor="exampleFormControlFile1">Subí una foto mostrando tu negocio</label>
-					<input type="file" className="form-control-file" id="exampleFormControlFile1" />
+	return (
+		<form className="container col-5 mx-auto">
+			<div>
+				<div className="form-group">
+					<label htmlFor="exampleFormControlInput1">Nombre de Local</label>
+					<input
+						onChange={actions.localData}
+						name="nombre"
+						type="text"
+						className="form-control"
+						id="exampleFormControlInput1"
+						placeholder="Nombre de tu negocio"
+					/>
 				</div>
-				<div>
-					<button type="button" className="btn btn-primary">
-						Registrar mi negocio
-					</button>
-					<div className="custom-control custom-checkbox pt-3">
-						<input type="checkbox" className="custom-control-input" id="customCheck1" />
-						<label className="custom-control-label" htmlFor="customCheck1">
-							Acepto los términos y condiciones
-						</label>
+				<div className="form-group">
+					<label htmlFor="exampleFormControlTextarea1">Describí brevemente tu negocio</label>
+					<textarea
+						onChange={actions.localData}
+						name="descripcion"
+						className="form-control"
+						id="exampleFormControlTextarea1"
+						rows="5"
+					/>
+				</div>
+				<div className="form-group">
+					<label htmlFor="exampleFormControlInput1">
+						Email (no lo publicaremos, es para contactarte en caso de que pierdas el acceso a tu cuenta)
+					</label>
+					<input
+						onChange={actions.localData}
+						name="email"
+						type="email"
+						className="form-control"
+						id="exampleFormControlInput1"
+						placeholder="tuemail@ejemplo.com"
+					/>
+				</div>
+				<div className="form-group">
+					<label htmlFor="exampleFormControlInput1">Teléfono</label>
+					<input
+						onChange={actions.localData}
+						name="telefono"
+						type="text"
+						className="form-control"
+						id="exampleFormControlInput1"
+						placeholder="2456 7890"
+					/>
+				</div>
+				<div className="form-group">
+					<label htmlFor="exampleFormControlInput1">Dirección de tu Local</label>
+					<input
+						onChange={actions.localData}
+						name="direccion"
+						type="text"
+						className="form-control"
+						id="exampleFormControlInput1"
+						placeholder="Calle 1234, Localidad, Departamento"
+					/>
+				</div>
+				<div className="form-group">
+					<label htmlFor="exampleFormControlInput9">Horarios</label>
+					<input
+						onChange={actions.localData}
+						name="direccion"
+						className="form-control"
+						id="exampleFormControlInput9"
+					/>
+				</div>
+				<div className="form-group container">
+					<div className="d-flex justify-content-center">
+						<button
+							onClick={e => {
+								e.preventDefault();
+								actions.createLocal();
+							}}
+							className="btn btn-primary">
+							Registrar mi local
+							{store.registered == true ? <Redirect to="/home" /> : ""}
+						</button>
 					</div>
 				</div>
 			</div>
-		</div>
-	</form>
-);
+		</form>
+	);
+};

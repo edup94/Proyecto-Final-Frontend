@@ -13,6 +13,8 @@ import { Recover } from "./views/recover";
 import { Map } from "./component/mapaPropietario";
 import { EditUser } from "./views/editUser";
 import { LocalSolo } from "./views/localSolo";
+import { CrearLocales } from "./views/crearLocales";
+import { EditarLocales } from "./views/editarLocales";
 
 //create your first component
 const Layout = () => {
@@ -49,6 +51,12 @@ const Layout = () => {
 						</Route>
 						<Route exact path="/edituser">
 							<EditUser />
+						</Route>
+						<Route exact path="/createlocal">
+							<CrearLocales />
+						</Route>
+						<Route exact path="/editlocal">
+							<EditarLocales />
 						</Route>
 						<Route exact path="/terminos">
 							<Terminos />

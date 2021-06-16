@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
-import { Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 export const Register = () => {
 	const { store, actions } = useContext(Context);
