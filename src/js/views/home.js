@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { useParams } from "react-router-dom";
 import { LocalCard } from "../component/localCard";
+import { Comentario } from "../component/comentarioCard";
 
 export const Home = () => {
 	const { store, actions } = useContext(Context);
@@ -9,7 +10,7 @@ export const Home = () => {
 
 	useEffect(() => {
 		actions.getLocales();
-	}, []);
+    }, []);
 
 	return (
 		<div className="container mt-5">
@@ -29,6 +30,9 @@ export const Home = () => {
 					);
 				})}
 			</div>
+			{store.comments.map((element, i) => {
+				return <Comentario key={i} comentario={element.comentario} />;
+			})}
 		</div>
 	);
 };

@@ -167,7 +167,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 					.then(resp => resp.json())
 					.then(result => {
-						console.log(result);
 						getActions().getLocales();
 					})
 					.catch(error => console.log(error));
@@ -301,6 +300,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(response => response.json())
 					.then(result => setStore({ favorites: result }))
 					.catch(error => console.log("error", error));
+			},
+			verDetalles: id => {
+				let numIndex = process.env.BACKEND_URL + "/local" + id;
+				fetch(numIndex)
+					.then(response => response.json())
+					.then(response => setStore({ localData: response }))
+					.catch(error => console.log(true));
 			}
 		}
 	};

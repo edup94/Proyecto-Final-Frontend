@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 export const LocalCard = props => {
 	const { store, actions } = useContext(Context);
 	const [id, setId] = useState(props.id);
-
+    
 	return (
 		<div className="container col-md-12">
 			<div className="row featurette p-5">
@@ -24,11 +24,12 @@ export const LocalCard = props => {
 							onClick={() => actions.addFavorite(props.nombre)}>
 							<i className="fas fa-star" />
 						</button>
-						<Link 
+						<Link
 							to={"/editlocal/" + props.id}
 							onClick={() => {
 								actions.getLocalById(id);
-							}} className ="btn btn-primary m-1">
+							}}
+							className="btn btn-primary m-1">
 							Editar
 						</Link>
 						<h2 className="nombre-local p-3 text-primary">{props.nombre}</h2>
@@ -46,9 +47,15 @@ export const LocalCard = props => {
 						</div>
 					</div>
 					<div className="row">
-						<div className="col-md-4">
+						<div className="col-md-4 col-lg-8">
 							<p className="text-primary"> Dirección:</p>
 							<p> {props.direccion}</p>
+						</div>
+					</div>
+					<div className="row border border-primary rounded">
+						<div className="col-md-4 col-lg-8">
+							<h3 className="text-primary">Usuario Ejemplo</h3>
+							<p>Comentario ejemplo hecho por el Usuario Ejemplo</p>
 						</div>
 					</div>
 				</div>

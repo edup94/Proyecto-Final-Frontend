@@ -12,7 +12,6 @@ import { Footer } from "./component/footer";
 import { Recover } from "./views/recover";
 import { Map } from "./component/mapaPropietario";
 import { EditUser } from "./views/editUser";
-import { LocalSolo } from "./views/localSolo";
 import { CrearLocales } from "./views/crearLocales";
 import { EditarLocales } from "./views/editarLocales";
 import { LocalesFavoritos } from "./views/localesFavoritos";
@@ -37,9 +36,6 @@ const Layout = () => {
 						</Route>
 						<Route exact path="/home">
 							<Home />
-						</Route>
-						<Route exact path="/localsolo">
-							<LocalSolo />
 						</Route>
 						<Route exact path="/login">
 							<Login />
