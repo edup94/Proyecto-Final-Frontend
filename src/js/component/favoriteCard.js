@@ -10,7 +10,7 @@ export function Favorites(props) {
 	return (
 		<div className="container justify-content-center d-flex mb-4">
 			<div>
-				<button className="btn btn-primary">
+				<button className="btn btn-primary btnfav mr-n5">
 					<i className="far fa-trash-alt" onClick={() => actions.deleteFavorite(props.id)} />
 				</button>
 			</div>
