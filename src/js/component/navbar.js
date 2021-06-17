@@ -25,7 +25,7 @@ export const Navbar = () => {
 					</li>
 					<li className="nav-item">
 						<Link to="/createlocal" className="btn btn-primary ml-1">
-							Locales
+							Registrar Local
 						</Link>
 					</li>
 					<li className="nav-item">

@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 export const LocalCard = props => {
 	const { store, actions } = useContext(Context);
 	const [id, setId] = useState(props.id);
-    
+
 	return (
 		<div className="container col-md-12">
 			<div className="row featurette p-5">
@@ -37,24 +37,24 @@ export const LocalCard = props => {
 					<p className="local-bajada text-primary">Descripción:</p>
 					<p>{props.descripcion}</p>
 					<div className="row">
-						<div className="col-md-4">
+						<div className="col-md-4 col-lg-4">
 							<p className="text-primary"> Horario:</p>
 							<p> {props.horario}</p>
 						</div>
-						<div className="col-md-4">
+						<div className="col-md-4 col-lg-4">
 							<p className="text-primary"> Teléfono:</p>
 							<p> {props.telefono}</p>
 						</div>
 					</div>
 					<div className="row">
-						<div className="col-md-4 col-lg-8">
+						<div className="col-md-4 col-lg-8 border-bottom border-primary mb-3">
 							<p className="text-primary"> Dirección:</p>
 							<p> {props.direccion}</p>
 						</div>
 					</div>
-					<div className="row border border-primary rounded">
+					<div className="row ">
 						<div className="col-md-4 col-lg-8">
-							<h3 className="text-primary">Usuario Ejemplo</h3>
+							<h5 className="text-primary">Usuario Ejemplo</h5>
 							<p>Comentario ejemplo hecho por el Usuario Ejemplo</p>
 						</div>
 					</div>

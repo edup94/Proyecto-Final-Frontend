@@ -1,10 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import "../../styles/home.scss";
 import { Context } from "../store/appContext";
 import { Redirect } from "react-router-dom";
 
 export const CrearLocales = () => {
 	const { store, actions } = useContext(Context);
+	const [home, setHome] = useState(false);
 
 	return (
 		<form className="container col-5 mx-auto">
@@ -65,12 +66,13 @@ export const CrearLocales = () => {
 					<div className="d-flex justify-content-center">
 						<button
 							onClick={e => {
+								setHome(true);
 								e.preventDefault();
 								actions.createLocal();
 							}}
 							className="btn btn-primary">
 							Registrar mi local
-							{store.registered == true ? <Redirect to="/home" /> : ""}
+							{home == true ? <Redirect to="/home" /> : ""}
 						</button>
 					</div>
 				</div>

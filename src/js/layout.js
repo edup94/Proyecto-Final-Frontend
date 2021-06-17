@@ -10,7 +10,7 @@ import { Terminos } from "./views/terminos";
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { Recover } from "./views/recover";
-import { Map } from "./component/mapaPropietario";
+import { Map } from "./component/mapa";
 import { EditUser } from "./views/editUser";
 import { CrearLocales } from "./views/crearLocales";
 import { EditarLocales } from "./views/editarLocales";
@@ -45,9 +45,6 @@ const Layout = () => {
 						</Route>
 						<Route exact path="/recover">
 							<Recover />
-						</Route>
-						<Route exact path="/edituser">
-							<EditUser />
 						</Route>
 						<Route exact path="/createlocal">
 							<CrearLocales />
