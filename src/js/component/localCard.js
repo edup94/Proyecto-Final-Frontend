@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
-import Local from "../../img/interior-shot-of-cafe.jpg";
+import Local from "../../img/taller.jpg";
 import "../../styles/home.scss";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
@@ -24,15 +24,15 @@ export const LocalCard = props => {
 							onClick={() => actions.addFavorite(props.nombre)}>
 							<i className="fas fa-star" />
 						</button>
+						<h2 className="nombre-local p-3 text-primary">{props.nombre}</h2>
 						<Link
 							to={"/editlocal/" + props.id}
 							onClick={() => {
 								actions.getLocalById(id);
 							}}
-							className="btn btn-primary m-1">
+							className="btn btn-primary ml-2">
 							Editar
 						</Link>
-						<h2 className="nombre-local p-3 text-primary">{props.nombre}</h2>
 					</div>
 					<p className="local-bajada text-primary">Descripción:</p>
 					<p>{props.descripcion}</p>

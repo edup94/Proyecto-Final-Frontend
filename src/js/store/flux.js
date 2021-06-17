@@ -196,7 +196,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			//obtener local por id
-			getLocalById: id => {
+			getLocalById: async id => {
 				fetch(process.env.BACKEND_URL + "/local/" + id, {
 					method: "GET",
 					headers: {

@@ -11,10 +11,10 @@ import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { Recover } from "./views/recover";
 import { Map } from "./component/mapa";
-import { EditUser } from "./views/editUser";
 import { CrearLocales } from "./views/crearLocales";
 import { EditarLocales } from "./views/editarLocales";
 import { LocalesFavoritos } from "./views/localesFavoritos";
+import error from "../img/404.png";
 
 //create your first component
 const Layout = () => {
@@ -59,7 +59,7 @@ const Layout = () => {
 							<Terminos />
 						</Route>
 						<Route>
-							<h1>Not found!</h1>
+							<img src={error} />
 						</Route>
 					</Switch>
 					<Footer />
