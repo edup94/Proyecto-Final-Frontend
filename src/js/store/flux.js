@@ -7,6 +7,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			userInfo: {},
 			signUpData: {},
 			localData: [],
+			createLocal: {},
+			editDataLocal: {},
+			readLocalById: {},
 			localInfo: {},
 			comments: [],
 			favorites: null,
@@ -128,56 +131,51 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			//registro/crear local
 			createLocal: () => {
-				let localInfo = {
-					nombre: getStore().localData.nombre,
-					direccion: getStore().localData.direccion,
-					telefono: getStore().localData.telefono,
-					horario: getStore().localData.horario,
-					descripcion: getStore().localData.descripcion
-				};
-				var myHeaders = new Headers();
-				myHeaders.append("Content-Type", "application/json");
-				myHeaders.append("Authorization", "Bearer " + localStorage.getItem("token"));
-
-				var raw = JSON.stringify({
-					localInfo
-				});
-
-				var requestOptions = {
+				const data = getStore().createLocal;
+				fetch(process.env.BACKEND_URL + "/local", {
 					method: "POST",
-					headers: myHeaders,
-					body: raw,
-					redirect: "follow"
-				};
-
-				fetch(process.env.BACKEND_URL + "/local", requestOptions)
-					.then(response => response.json())
-					.then(result => setStore({ localData: result }))
-					.catch(error => console.log("error", error));
+					headers: {
+						"Content-Type": "application/json",
+						Authorization: localStorage.getItem("token")
+					},
+					body: JSON.stringify(data)
+				})
+					.then(resp => resp.json())
+					.then(resp => console.log(resp))
+					.catch(error => console.log(error));
 			},
 			localData: e => {
 				let data = { [e.target.name]: e.target.value };
 				setStore({ localData: { ...getStore().localData, ...data } });
 			},
 
+			createLocalData: e => {
+				let data = { [e.target.name]: e.target.value };
+				setStore({ createLocal: { ...getStore().createLocal, ...data } });
+			},
+
 			//editar local
-			editLocal: newLocalData => {
-				fetch(process.env.BACKEND_URL + "/local", {
+			editLocal: newData => {
+				let id = getStore().readLocalById.id;
+				fetch(process.env.BACKEND_URL + "/local/" + id, {
 					method: "PUT",
 					headers: {
 						"Content-Type": "application/json",
 						Authorization: localStorage.getItem("token")
 					},
-					body: JSON.stringify(newLocalData)
+					body: JSON.stringify(newData)
 				})
 					.then(resp => resp.json())
 					.then(result => {
 						console.log(result);
-						setStore({ localInfo: result });
+						getActions().getLocales();
 					})
-					.catch(error => {
-						console.log(error);
-					});
+					.catch(error => console.log(error));
+			},
+
+			editLocalData: e => {
+				let data = { [e.target.name]: e.target.value };
+				setStore({ editDataLocal: { ...getStore().editDataLocal, ...data } });
 			},
 
 			//obtener locales
@@ -196,6 +194,23 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(response => response.json())
 					.then(response => setStore({ localData: response }))
 					.catch(error => console.log("error", error));
+			},
+
+			//obtener local por id
+			getLocalById: id => {
+				fetch(process.env.BACKEND_URL + "/local/" + id, {
+					method: "GET",
+					headers: {
+						"Content-Type": "application/json",
+						Authorization: localStorage.getItem("token")
+					}
+				})
+					.then(resp => resp.json())
+					.then(resp => {
+						console.log(resp);
+						setStore({ readLocalById: resp });
+					})
+					.catch(error => console.log(error));
 			},
 
 			//crear comentario

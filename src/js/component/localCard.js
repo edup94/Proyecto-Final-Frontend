@@ -1,11 +1,13 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
 import Local from "../../img/interior-shot-of-cafe.jpg";
 import "../../styles/home.scss";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 export const LocalCard = props => {
 	const { store, actions } = useContext(Context);
+	const [id, setId] = useState(props.id);
 
 	return (
 		<div className="container col-md-12">
@@ -22,6 +24,13 @@ export const LocalCard = props => {
 							onClick={() => actions.addFavorite(props.nombre)}>
 							<i className="fas fa-star" />
 						</button>
+						<Link 
+							to={"/editlocal/" + props.id}
+							onClick={() => {
+								actions.getLocalById(id);
+							}} className ="btn btn-primary m-1">
+							Editar
+						</Link>
 						<h2 className="nombre-local p-3 text-primary">{props.nombre}</h2>
 					</div>
 					<p className="local-bajada text-primary">Descripción:</p>
@@ -53,5 +62,6 @@ LocalCard.propTypes = {
 	horario: PropTypes.string,
 	direccion: PropTypes.string,
 	descripcion: PropTypes.string,
-	telefono: PropTypes.string
+	telefono: PropTypes.string,
+	id: PropTypes.number
 };

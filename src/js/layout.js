@@ -56,7 +56,7 @@ const Layout = () => {
 						<Route exact path="/createlocal">
 							<CrearLocales />
 						</Route>
-						<Route exact path="/editlocal">
+						<Route exact path="/editlocal/:id">
 							<EditarLocales />
 						</Route>
 						<Route exact path="/favoritelocal">

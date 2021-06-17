@@ -24,6 +24,7 @@ export const Home = () => {
 							horario={element.horario}
 							direccion={element.direccion}
 							telefono={element.telefono}
+							id={element.id}
 						/>
 					);
 				})}

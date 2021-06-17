@@ -12,7 +12,7 @@ export const CrearLocales = () => {
 				<div className="form-group text-primary">
 					<label htmlFor="exampleFormControlInput1">Nombre de Local</label>
 					<input
-						onChange={actions.localData}
+						onChange={actions.createLocalData}
 						name="nombre"
 						type="text"
 						className="form-control"
@@ -23,7 +23,7 @@ export const CrearLocales = () => {
 				<div className="form-group text-primary">
 					<label htmlFor="exampleFormControlTextarea1">Describí brevemente tu negocio</label>
 					<textarea
-						onChange={actions.localData}
+						onChange={actions.createLocalData}
 						name="descripcion"
 						className="form-control"
 						id="exampleFormControlTextarea1"
@@ -33,7 +33,7 @@ export const CrearLocales = () => {
 				<div className="form-group text-primary">
 					<label htmlFor="exampleFormControlInput1">Teléfono</label>
 					<input
-						onChange={actions.localData}
+						onChange={actions.createLocalData}
 						name="telefono"
 						type="text"
 						className="form-control"
@@ -44,7 +44,7 @@ export const CrearLocales = () => {
 				<div className="form-group text-primary">
 					<label htmlFor="exampleFormControlInput1">Dirección de tu Local</label>
 					<input
-						onChange={actions.localData}
+						onChange={actions.createLocalData}
 						name="direccion"
 						type="text"
 						className="form-control"
@@ -55,8 +55,8 @@ export const CrearLocales = () => {
 				<div className="form-group text-primary">
 					<label htmlFor="exampleFormControlInput9">Horarios</label>
 					<input
-						onChange={actions.localData}
-						name="direccion"
+						onChange={actions.createLocalData}
+						name="horario"
 						className="form-control"
 						id="exampleFormControlInput9"
 					/>
