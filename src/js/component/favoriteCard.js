@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import { Context } from "../store/appContext";
-import Local from "../../img/interior-shot-of-cafe.jpg";
+import Local from "../../img/taller.jpg";
 import "../../styles/home.scss";
 
 export function Favorites(props) {

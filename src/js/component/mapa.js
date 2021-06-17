@@ -99,8 +99,8 @@ export const Map = () => {
 							setSelected(null);
 						}}>
 						<div>
-							<h2 className="text-primary">Nombre del Local</h2> {/*cambiar a algo acorde*/}
-							<p className="text-primary">Creado: {formatRelative(selected.time, new Date())}</p>
+							<h2 className="text-primary">Local de ejemplo</h2>
+							<p className="text-primary">Registrado: {formatRelative(selected.time, new Date())}</p>
 						</div>
 					</InfoWindow>
 				) : null}
