@@ -99,7 +99,7 @@ export const Map = () => {
 							setSelected(null);
 						}}>
 						<div>
-							<h2 className="text-primary">Local de ejemplo</h2>
+							<h2 className="text-primary">Local de Ejemplo 5</h2>
 							<p className="text-primary">Registrado: {formatRelative(selected.time, new Date())}</p>
 						</div>
 					</InfoWindow>
